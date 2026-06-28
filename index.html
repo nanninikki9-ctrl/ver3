@@ -1,0 +1,2926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Health Sentinel | AI Health Monitoring</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+<!-- =======================================
+ONBOARDING
+======================================= -->
+
+<div id="onboardingScreen" class="onboarding-container">
+
+    <!-- Page 1 -->
+    <div class="onboard-page active" id="page1">
+
+        <div class="onboard-card">
+
+            <div class="onboard-icon">🩺</div>
+
+            <h1>Welcome to Health Sentinel</h1>
+
+            <p>
+                Your personal AI-powered health companion.
+                Monitor Blood Pressure, Blood Sugar and SpO₂
+                anytime, anywhere.
+            </p>
+
+            <div class="tips">
+                ✔ Daily Health Monitoring<br>
+                ✔ AI Powered Insights<br>
+                ✔ Secure Cloud Storage
+            </div>
+
+            <div class="progress">
+                <span class="active-dot"></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="buttons">
+
+                <button class="skipBtn" onclick="skipOnboarding()">
+                    Skip
+                </button>
+
+                <button class="nextBtn" onclick="nextPage(2)">
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Page 2 -->
+
+    <div class="onboard-page" id="page2">
+
+        <div class="onboard-card">
+
+            <div class="onboard-icon">❤️</div>
+
+            <h1>Stay Healthy Every Day</h1>
+
+            <p>
+                Daily health tracking helps detect problems
+                before they become serious.
+            </p>
+
+            <div class="tips">
+
+                ✔ Blood Pressure Monitoring<br>
+
+                ✔ Blood Sugar Tracking<br>
+
+                ✔ Weekly Reports<br>
+
+                ✔ Emergency Alerts
+
+            </div>
+
+            <div class="progress">
+                <span></span>
+                <span class="active-dot"></span>
+                <span></span>
+            </div>
+
+            <div class="buttons">
+
+                <button onclick="previousPage(1)">
+                    ← Back
+                </button>
+
+                <button onclick="skipOnboarding()">
+                    Skip
+                </button>
+
+                <button onclick="nextPage(3)">
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Page 3 -->
+
+    <div class="onboard-page" id="page3">
+
+        <div class="onboard-card">
+
+            <div class="onboard-icon">🌿</div>
+
+            <h1>Your Health Matters</h1>
+
+            <p>
+
+                Small daily health checks today can prevent
+                major health problems tomorrow.
+
+            </p>
+
+            <div class="tips">
+
+                ✔ Smart Dashboard<br>
+
+                ✔ AI Health Review<br>
+
+                ✔ Secure History<br>
+
+                ✔ Fast & Easy
+
+            </div>
+
+            <div class="progress">
+                <span></span>
+                <span></span>
+                <span class="active-dot"></span>
+            </div>
+
+            <div class="buttons">
+
+                <button onclick="previousPage(2)">
+                    ← Back
+                </button>
+
+                <button class="startBtn"
+                    onclick="finishOnboarding()">
+
+                    Get Started
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- =======================================
+LOGIN SCREEN
+======================================= -->
+<div id="loginScreen" class="auth-container">
+
+    <div class="left-panel">
+
+        <div class="logo">
+            <div class="logo-icon">🩺</div>
+
+            <div>
+                <h2>Health Sentinel</h2>
+                <p>AI Health Monitoring</p>
+            </div>
+        </div>
+
+        <div class="doctor-image">
+            <img src="assets/nurse.jpg" alt="">
+        </div>
+
+        <div class="copyright">
+            © 2026 Health Sentinel
+        </div>
+
+    </div>
+
+    <div class="right-panel">
+
+        <div class="auth-card">
+
+            <div class="tab-header">
+              
+            </div>
+
+            <input
+                type="text"
+                id="regName"
+                placeholder="Full Name"
+            >
+
+            <input
+                type="email"
+                id="authEmail"
+                placeholder="Email Address"
+            >
+
+            <input
+                type="password"
+                id="authPassword"
+                placeholder="Password"
+            >
+
+            <button
+                class="auth-btn"
+                onclick="registerUser()"
+            >
+                Create Account
+            </button>
+
+            <button
+                class="auth-btn secondary"
+                onclick="login()"
+            >
+                Login
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="verifyPage" class="verify-page" style="display:none;">
+
+    <div class="verify-card">
+        <div class="verify-icon">📧</div>
+
+        <h1>Verify Your Email</h1>
+
+        <p>Verification email sent to:</p>
+
+        <p id="verifyEmailText"></p>
+
+        <button onclick="checkVerification()">
+            I've Verified My Email
+        </button>
+    </div>
+
+</div>
+<!-- =======================================
+PROFILE PAGE
+======================================= -->
+
+<div id="profilePage" style="display:none;">
+
+<div class="profile-wrapper">
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <h1>Patient Profile Setup</h1>
+
+            <p>
+                Complete your profile before using the dashboard
+            </p>
+
+        </div>
+
+        <!-- BASIC INFO -->
+
+        <div class="profile-section">
+
+            <h2>Basic Information</h2>
+
+            <div class="profile-grid">
+
+                <div class="input-group">
+
+                    <label>Patient Name</label>
+
+                    <input
+                        type="text"
+                        id="patientName"
+                        placeholder="Enter Full Name"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Age</label>
+
+                    <input
+                        type="number"
+                        id="age"
+                        placeholder="Age"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Gender</label>
+
+                    <select id="gender">
+
+                        <option value="">
+                            Select Gender
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- EMERGENCY CONTACT -->
+
+        <div class="profile-section">
+
+            <h2>Emergency Contact</h2>
+
+            <div class="profile-grid">
+
+                <div class="input-group">
+
+                    <label>Emergency Number</label>
+
+                    <input
+                        type="tel"
+                        id="emergencyNumber"
+                        placeholder="+91XXXXXXXXXX"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- THRESHOLDS -->
+
+        <div class="profile-section">
+
+            <h2>Health Alert Thresholds</h2>
+
+            <div class="profile-grid">
+
+                <div class="input-group">
+
+                    <label>High BP Alert</label>
+
+                    <input
+                        type="number"
+                        id="bpPatient"
+                        placeholder="140"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>High Sugar Alert</label>
+
+                    <input
+                        type="number"
+                        id="sugarPatient"
+                        placeholder="180"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Low BP Alert</label>
+
+                    <input
+                        type="number"
+                        id="lowBPPatient"
+                        placeholder="90"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>Low Sugar Alert</label>
+
+                    <input
+                        type="number"
+                        id="lowSugarPatient"
+                        placeholder="70"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <button
+            class="save-profile-btn"
+            onclick="saveProfile()"
+        >
+            Save Profile
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+<!-- ===========================================================
+HEALTH SENTINEL PRO DASHBOARD
+PART 1
+=========================================================== -->
+
+<div id="dashboardPage" style="display:none;">
+
+    <!-- =========================
+    TOP NAVBAR
+    ========================= -->
+
+    <header class="topbar">
+
+        <div class="top-left">
+
+            <button class="menu-btn">
+                ☰
+            </button>
+
+            <div class="brand">
+
+                <div class="brand-logo">
+                    🩺
+                </div>
+
+                <div>
+
+                    <h2>Health Sentinel</h2>
+
+                    <p>
+                        Enterprise Healthcare Platform
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="top-right">
+
+            <input
+                class="search-box"
+                type="text"
+                placeholder="Search..."
+            >
+
+            <button class="icon-btn">
+                🔔
+            </button>
+
+            <div class="profile-chip">
+
+                <div class="avatar">
+                    H
+                </div>
+
+                <div>
+
+                    <strong id="patientNameDisplay">
+
+                        Patient
+
+                    </strong>
+
+                    <small>
+
+                        Online
+
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+    MAIN LAYOUT
+    ========================= -->
+
+    <div class="dashboard-layout">
+
+        <!-- =========================
+        SIDEBAR
+        ========================= -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-title">
+
+                MAIN MENU
+
+            </div>
+
+            <a
+                class="active"
+                onclick="showSection('dashboardSection')">
+
+                🏠 Dashboard
+
+            </a>
+
+            <a
+                onclick="showSection('monitorSection')">
+
+                ❤️ Live Monitoring
+
+            </a>
+
+            <a
+                onclick="showSection('patientSection')">
+
+                👤 Patient
+
+            </a>
+
+            <a
+                onclick="showSection('analyticsSection')">
+
+                📈 Analytics
+
+            </a>
+
+            <a
+                onclick="showSection('aiSection')">
+
+                🤖 AI Review
+
+            </a>
+
+            <a
+                onclick="showSection('deviceSection')">
+
+                📡 Device
+
+            </a>
+
+            <a
+                onclick="showSection('emergencySection')">
+
+                🚨 Emergency
+
+            </a>
+
+            <a
+                onclick="showSection('settingsSection')">
+
+                ⚙ Settings
+
+            </a>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </aside>
+
+
+        <!-- =========================
+        CONTENT
+        ========================= -->
+
+        <main class="dashboard-content">
+
+            <!-- =====================================================
+            DASHBOARD HOME
+            ====================================================== -->
+
+            <section
+                id="dashboardSection"
+                class="dashboard-section">
+
+                <!-- Welcome -->
+
+                <div class="welcome-banner">
+
+                    <div>
+
+                        <span class="section-badge">
+
+                            AI HEALTH MONITORING
+
+                        </span>
+
+                        <h1 id="greetingText">
+
+                            Welcome 👋
+
+                        </h1>
+
+                        <p>
+
+                            Real-time monitoring of patient health
+                            using AI-powered analytics.
+
+                        </p>
+
+                    </div>
+
+                    <div class="sync-box">
+
+                        <span>
+
+                            Last Sync
+
+                        </span>
+
+                        <strong
+                            id="lastSyncDate">
+
+                            --
+
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <!-- KPI Cards -->
+
+                <div class="metrics-grid">
+
+                    <!-- BP -->
+
+                    <div class="metric-card">
+
+                        <div class="metric-icon">
+
+                            ❤️
+
+                        </div>
+
+                        <div>
+
+                            <small>
+
+                                Blood Pressure
+
+                            </small>
+
+                            <h2 id="bpValue">
+
+                                --/--
+
+                            </h2>
+
+                            <span>
+
+                                mmHg
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Sugar -->
+
+                    <div class="metric-card">
+
+                        <div class="metric-icon">
+
+                            🍬
+
+                        </div>
+
+                        <div>
+
+                            <small>
+
+                                Blood Sugar
+
+                            </small>
+
+                            <h2 id="sugarValue">
+
+                                --
+
+                            </h2>
+
+                            <span>
+
+                                mg/dL
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- SPO2 -->
+
+                    <div class="metric-card">
+
+                        <div class="metric-icon">
+
+                            🫁
+
+                        </div>
+
+                        <div>
+
+                            <small>
+
+                                Oxygen Saturation
+
+                            </small>
+
+                            <h2 id="spo2Value">
+
+                                --%
+
+                            </h2>
+
+                            <span>
+
+                                SpO₂
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Risk -->
+
+                    <div class="metric-card">
+
+                        <div class="metric-icon">
+
+                            ⚠
+
+                        </div>
+
+                        <div>
+
+                            <small>
+
+                                AI Risk Score
+
+                            </small>
+
+                            <h2 id="riskScore">
+
+                                0%
+
+                            </h2>
+
+                            <span id="trendLabel">
+
+                                Stable
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+            NEXT SECTION STARTS IN PART 2
+            ====================================================== -->
+<!-- =====================================================
+LIVE MONITORING
+===================================================== -->
+
+<section
+    id="monitorSection"
+    class="dashboard-section"
+    style="display:none;">
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+
+                Live Monitoring
+
+            </h1>
+
+            <p>
+
+                Real-time patient vital signs
+
+            </p>
+
+        </div>
+
+        <div class="live-status">
+
+            <span class="live-dot"></span>
+
+            LIVE
+
+        </div>
+
+    </div>
+
+    <!-- Device Status -->
+
+    <div class="device-overview">
+
+        <div class="device-card">
+
+            <h3>
+
+                Device Status
+
+            </h3>
+
+            <div class="device-grid">
+
+                <div class="device-item">
+
+                    <span>Battery</span>
+
+                    <strong id="battery">
+
+                        100%
+
+                    </strong>
+
+                </div>
+
+                <div class="device-item">
+
+                    <span>Signal</span>
+
+                    <strong id="signal">
+
+                        Strong
+
+                    </strong>
+
+                </div>
+
+                <div class="device-item">
+
+                    <span>Last Sync</span>
+
+                    <strong id="sync">
+
+                        --
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+            <div class="device-actions">
+
+                <button
+                    id="connectBtn"
+                    class="primary-btn">
+
+                    Connect Device
+
+                </button>
+
+                <button
+                    class="danger-btn"
+                    onclick="disconnectDevice()">
+
+                    Disconnect
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Main Chart -->
+
+    <div class="monitor-card">
+
+        <div class="card-header">
+
+            <div>
+
+                <h2>
+
+                    Blood Pressure Trend
+
+                </h2>
+
+                <p>
+
+                    Weekly monitoring
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <canvas id="bpChart"></canvas>
+
+    </div>
+
+    <!-- Two Charts -->
+
+    <div class="dual-chart-grid">
+
+        <div class="monitor-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    Blood Sugar Trend
+
+                </h2>
+
+            </div>
+
+            <canvas id="glucoseChart"></canvas>
+
+        </div>
+
+        <div class="monitor-card">
+
+            <div class="card-header">
+
+                <h2>
+
+                    SpO₂ Trend
+
+                </h2>
+
+            </div>
+
+            <canvas id="spo2Chart"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- Current Readings -->
+
+    <div class="live-reading-grid">
+
+        <div class="reading-card">
+
+            <h4>
+
+                Blood Pressure
+
+            </h4>
+
+            <div
+                class="reading-value"
+                id="bpValue">
+
+                --/--
+
+            </div>
+
+        </div>
+
+        <div class="reading-card">
+
+            <h4>
+
+                Blood Sugar
+
+            </h4>
+
+            <div
+                class="reading-value"
+                id="sugarValue">
+
+                --
+
+            </div>
+
+        </div>
+
+        <div class="reading-card">
+
+            <h4>
+
+                SpO₂
+
+            </h4>
+
+            <div
+                class="reading-value"
+                id="spo2Value">
+
+                --%
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+PART 3 STARTS HERE
+(Patient Profile)
+===================================================== -->
+<!-- =====================================================
+PATIENT PROFILE
+===================================================== -->
+
+<section
+    id="patientSection"
+    class="dashboard-section"
+    style="display:none;">
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+
+                Patient Profile
+
+            </h1>
+
+            <p>
+
+                Personal and medical information
+
+            </p>
+
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="editProfile()">
+
+            Edit Profile
+
+        </button>
+
+    </div>
+
+    <!-- Patient Summary -->
+
+    <div class="patient-summary-card">
+
+        <div class="patient-avatar">
+
+            👤
+
+        </div>
+
+        <div class="patient-basic">
+
+           <h2 id="patientNameDisplay">--</h2>
+
+            <p>
+
+                Registered Health Sentinel User
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Information Grid -->
+
+    <div class="patient-grid">
+
+        <!-- Personal Information -->
+
+        <div class="patient-card">
+
+            <h3>
+
+                Personal Information
+
+            </h3>
+
+            <div class="info-list">
+
+                <div class="info-row">
+
+                    <span>Name</span>
+
+              <strong id="patientNameDisplay">--</strong>
+                </div>
+
+                <div class="info-row">
+
+                    <span>Age</span>
+
+                    <strong id="patientAgeDisplay">
+
+                        --
+
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>Gender</span>
+
+                    <strong id="patientGenderDisplay">
+
+                        --
+
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>Email</span>
+
+                    <strong id="userInfo">
+
+                        --
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Emergency Contact -->
+
+        <div class="patient-card">
+
+            <h3>
+
+                Emergency Contact
+
+            </h3>
+
+            <div class="info-list">
+
+                <div class="info-row">
+
+                    <span>Primary Contact</span>
+
+                    <strong id="familyNumber">
+
+                        --
+
+                    </strong>
+
+                </div>
+
+                <div class="info-row">
+
+                    <span>Emergency Status</span>
+
+                    <strong class="status-good">
+
+                        Active
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Health Thresholds -->
+
+    <div class="patient-card">
+
+        <h3>
+
+            Health Alert Thresholds
+
+        </h3>
+
+        <div class="threshold-grid">
+
+            <div class="threshold-box">
+
+                <span>
+
+                    High BP
+
+                </span>
+
+                <h2 id="highBPDisplay">
+
+                    140
+
+                </h2>
+
+                <small>
+
+                    mmHg
+
+                </small>
+
+            </div>
+
+            <div class="threshold-box">
+
+                <span>
+
+                    Low BP
+
+                </span>
+
+                <h2 id="lowBPDisplay">
+
+                    90
+
+                </h2>
+
+                <small>
+
+                    mmHg
+
+                </small>
+
+            </div>
+
+            <div class="threshold-box">
+
+                <span>
+
+                    High Sugar
+
+                </span>
+
+                <h2 id="highSugarDisplay">
+
+                    180
+
+                </h2>
+
+                <small>
+
+                    mg/dL
+
+                </small>
+
+            </div>
+
+            <div class="threshold-box">
+
+                <span>
+
+                    Low Sugar
+
+                </span>
+
+                <h2 id="lowSugarDisplay">
+
+                    70
+
+                </h2>
+
+                <small>
+
+                    mg/dL
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+
+    <div class="patient-card">
+
+        <h3>
+
+            Quick Actions
+
+        </h3>
+
+        <div class="action-grid">
+
+            <button
+                class="primary-btn"
+                onclick="editProfile()">
+
+                Update Profile
+
+            </button>
+
+            <button
+                class="outline-btn"
+                onclick="showSection('analyticsSection')">
+
+                View Analytics
+
+            </button>
+
+            <button
+                class="outline-btn"
+                onclick="showSection('aiSection')">
+
+                AI Report
+
+            </button>
+
+            <button
+                class="outline-btn"
+                onclick="showSection('monitorSection')">
+
+                Live Monitoring
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+PART 4 STARTS HERE
+(Analytics)
+===================================================== -->
+<!-- =====================================================
+ANALYTICS SECTION
+===================================================== -->
+
+<section
+    id="analyticsSection"
+    class="dashboard-section"
+    style="display:none;">
+
+    <!-- Header -->
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+
+                Health Analytics
+
+            </h1>
+
+            <p>
+
+                Weekly and monthly health statistics
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Summary Cards -->
+
+    <div class="analytics-summary-grid">
+
+        <div class="analytics-summary-card">
+
+            <small>
+
+                Average Blood Pressure
+
+            </small>
+
+            <h2 id="avgBP">
+
+                --
+
+            </h2>
+
+            <span>
+
+                mmHg
+
+            </span>
+
+        </div>
+
+        <div class="analytics-summary-card">
+
+            <small>
+
+                Average Blood Sugar
+
+            </small>
+
+            <h2 id="avgSugar">
+
+                --
+
+            </h2>
+
+            <span>
+
+                mg/dL
+
+            </span>
+
+        </div>
+
+        <div class="analytics-summary-card">
+
+            <small>
+
+                Average SpO₂
+
+            </small>
+
+            <h2 id="avgSpo2">
+
+                --
+
+            </h2>
+
+            <span>
+
+                %
+
+            </span>
+
+        </div>
+
+        <div class="analytics-summary-card">
+
+            <small>
+
+                Overall Risk
+
+            </small>
+
+            <h2 id="riskScoreAnalytics">
+
+                0%
+
+            </h2>
+
+            <span>
+
+                AI Prediction
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Weekly Charts -->
+
+    <div class="analytics-chart-grid">
+
+        <div class="analytics-chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    Weekly Blood Pressure
+
+                </h3>
+
+            </div>
+
+            <canvas id="bpChartAnalytics"></canvas>
+
+        </div>
+
+        <div class="analytics-chart-card">
+
+            <div class="card-header">
+
+                <h3>
+
+                    Weekly Blood Sugar
+
+                </h3>
+
+            </div>
+
+            <canvas id="glucoseChartAnalytics"></canvas>
+
+        </div>
+
+    </div>
+
+    <!-- Monthly Chart -->
+
+    <div class="analytics-chart-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                Monthly Oxygen Saturation
+
+            </h3>
+
+        </div>
+
+        <canvas id="spo2ChartAnalytics"></canvas>
+
+    </div>
+
+    <!-- Health Statistics -->
+
+    <div class="analytics-info-grid">
+
+        <div class="analytics-info-card">
+
+            <h3>
+
+                Health Statistics
+
+            </h3>
+
+            <table class="analytics-table">
+
+                <tr>
+
+                    <td>Total Readings</td>
+
+                    <td id="totalReadings">
+
+                        0
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Normal Readings</td>
+
+                    <td id="normalReadings">
+
+                        0
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Abnormal Readings</td>
+
+                    <td id="abnormalReadings">
+
+                        0
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Highest BP</td>
+
+                    <td id="highestBP">
+
+                        --
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Lowest BP</td>
+
+                    <td id="lowestBP">
+
+                        --
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Highest Sugar</td>
+
+                    <td id="highestSugar">
+
+                        --
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Lowest Sugar</td>
+
+                    <td id="lowestSugar">
+
+                        --
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>Lowest SpO₂</td>
+
+                    <td id="lowestSpo2">
+
+                        --
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <div class="analytics-info-card">
+
+            <h3>
+
+                Weekly Progress
+
+            </h3>
+
+            <div class="progress-item">
+
+                <span>
+
+                    Blood Pressure
+
+                </span>
+
+                <progress
+                    id="bpProgress"
+                    value="0"
+                    max="100">
+
+                </progress>
+
+            </div>
+
+            <div class="progress-item">
+
+                <span>
+
+                    Blood Sugar
+
+                </span>
+
+                <progress
+                    id="sugarProgress"
+                    value="0"
+                    max="100">
+
+                </progress>
+
+            </div>
+
+            <div class="progress-item">
+
+                <span>
+
+                    Oxygen Saturation
+
+                </span>
+
+                <progress
+                    id="spo2Progress"
+                    value="0"
+                    max="100">
+
+                </progress>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+PART 5 STARTS HERE
+(AI REVIEW)
+===================================================== -->
+<!-- =====================================================
+AI REVIEW
+===================================================== -->
+
+<section
+    id="aiSection"
+    class="dashboard-section"
+    style="display:none;">
+
+    <!-- Header -->
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+
+                AI Health Assistant
+
+            </h1>
+
+            <p>
+
+                Intelligent analysis powered by Health Sentinel AI
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Top Cards -->
+
+    <div class="ai-top-grid">
+
+        <!-- AI Risk -->
+
+        <div class="ai-risk-card">
+
+            <h3>
+
+                Current Risk Score
+
+            </h3>
+
+            <div class="risk-circle">
+
+                <div id="riskScore">
+
+                    0%
+
+                </div>
+
+            </div>
+
+            <h2 id="trendLabel">
+
+                Stable
+
+            </h2>
+
+        </div>
+
+        <!-- AI Status -->
+
+        <div class="ai-status-card">
+
+            <h3>
+
+                AI Status
+
+            </h3>
+
+            <div class="status-list">
+
+                <div>
+
+                    Heart
+
+                    <strong>
+
+                        ✓ Stable
+
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    Sugar
+
+                    <strong>
+
+                        ✓ Normal
+
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    Oxygen
+
+                    <strong>
+
+                        ✓ Good
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- AI Insight -->
+
+    <div class="ai-main-card">
+
+        <div class="card-header">
+
+            <h2>
+
+                AI Health Analysis
+
+            </h2>
+
+        </div>
+
+        <div
+            id="aiInsightText"
+            class="ai-report-box">
+
+            Waiting for patient readings...
+
+        </div>
+
+    </div>
+
+    <!-- Prediction -->
+
+    <div class="prediction-grid">
+
+        <div class="prediction-card">
+
+            <h3>
+
+                Disease Prediction
+
+            </h3>
+
+            <div class="prediction-item">
+
+                Diabetes Risk
+
+                <strong>
+
+                    Low
+
+                </strong>
+
+            </div>
+
+            <div class="prediction-item">
+
+                Hypertension
+
+                <strong>
+
+                    Low
+
+                </strong>
+
+            </div>
+
+            <div class="prediction-item">
+
+                Hypoxia
+
+                <strong>
+
+                    Low
+
+                </strong>
+
+            </div>
+
+        </div>
+
+        <div class="prediction-card">
+
+            <h3>
+
+                Recommendations
+
+            </h3>
+
+            <ul>
+
+                <li>
+
+                    Drink enough water
+
+                </li>
+
+                <li>
+
+                    Walk 30 minutes daily
+
+                </li>
+
+                <li>
+
+                    Sleep at least 8 hours
+
+                </li>
+
+                <li>
+
+                    Monitor BP twice daily
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Weekly Summary -->
+
+    <div class="summary-card">
+
+        <h2>
+
+            Weekly AI Summary
+
+        </h2>
+
+        <p>
+
+            Health Sentinel AI continuously monitors your
+            weekly readings and predicts future health trends
+            using Blood Pressure, Blood Sugar and Oxygen
+            Saturation.
+
+        </p>
+
+    </div>
+
+    <!-- AI Actions -->
+
+    <div class="action-grid">
+
+        <button
+            id="generateReportBtn"
+            class="primary-btn">
+
+            Generate AI Report
+
+        </button>
+
+        <button
+            class="outline-btn"
+            onclick="window.print()">
+
+            Print Report
+
+        </button>
+
+        <button
+            class="outline-btn"
+            onclick="showSection('analyticsSection')">
+
+            View Analytics
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+PART 6 STARTS HERE
+(DEVICE + EMERGENCY)
+===================================================== -->
+<!-- =====================================================
+DEVICE SECTION
+===================================================== -->
+
+<section
+    id="deviceSection"
+    class="dashboard-section"
+    style="display:none;">
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+
+                Device Management
+
+            </h1>
+
+            <p>
+
+                Connected Health Monitoring Device
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="device-page-grid">
+
+        <!-- Device Information -->
+
+        <div class="device-info-card">
+
+            <h2>
+
+                Device Information
+
+            </h2>
+
+            <div class="device-info-list">
+
+                <div>
+
+                    Device Name
+
+                    <strong>
+
+                        Health Sentinel Monitor
+
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    Model
+
+                    <strong>
+
+                        HS-01
+
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    Firmware
+
+                    <strong>
+
+                        v2.0.1
+
+                    </strong>
+
+                </div>
+
+                <div>
+
+                    Bluetooth
+
+                    <strong>
+
+                        Connected
+
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Live Status -->
+
+        <div class="device-status-card">
+
+            <h2>
+
+                Live Status
+
+            </h2>
+
+            <div class="status-grid">
+
+                <div class="status-box">
+
+                    <span>
+
+                        Battery
+
+                    </span>
+
+                    <h2 id="battery">
+
+                        100%
+
+                    </h2>
+
+                </div>
+
+                <div class="status-box">
+
+                    <span>
+
+                        Signal
+
+                    </span>
+
+                    <h2 id="signal">
+
+                        Strong
+
+                    </h2>
+
+                </div>
+
+                <div class="status-box">
+
+                    <span>
+
+                        Last Sync
+
+                    </span>
+
+                    <h2 id="sync">
+
+                        --
+
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Controls -->
+
+    <div class="device-control-card">
+
+        <h2>
+
+            Device Controls
+
+        </h2>
+
+        <div class="action-grid">
+
+            <button
+                id="connectBtn"
+                class="primary-btn">
+
+                Connect Device
+
+            </button>
+
+            <button
+                onclick="disconnectDevice()"
+                class="outline-btn">
+
+                Disconnect
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Sync Device
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Update Firmware
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+EMERGENCY SECTION
+===================================================== -->
+
+<section
+    id="emergencySection"
+    class="dashboard-section"
+    style="display:none;">
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+
+                Emergency Center
+
+            </h1>
+
+            <p>
+
+                Quick emergency response
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Alert -->
+
+    <div class="emergency-alert-card">
+
+        <h2>
+
+            🚨 Medical Emergency
+
+        </h2>
+
+        <p>
+
+            If abnormal readings are detected,
+            Health Sentinel immediately recommends
+            contacting emergency services.
+
+        </p>
+
+    </div>
+
+    <!-- Emergency Numbers -->
+
+    <div class="emergency-grid">
+
+        <div class="emergency-card">
+
+            <h3>
+
+                Ambulance
+
+            </h3>
+
+            <h1>
+
+                108
+
+            </h1>
+
+            <button
+                class="primary-btn">
+
+                Call
+
+            </button>
+
+        </div>
+
+        <div class="emergency-card">
+
+            <h3>
+
+                National Emergency
+
+            </h3>
+
+            <h1>
+
+                112
+
+            </h1>
+
+            <button
+                class="primary-btn">
+
+                Call
+
+            </button>
+
+        </div>
+
+        <div class="emergency-card">
+
+            <h3>
+
+                Family Contact
+
+            </h3>
+
+            <h2
+                id="familyNumberEmergency">
+
+                --
+
+            </h2>
+
+            <button
+                class="primary-btn">
+
+                Call
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Emergency Actions -->
+
+    <div class="device-control-card">
+
+        <h2>
+
+            Emergency Actions
+
+        </h2>
+
+        <div class="action-grid">
+
+            <button
+                onclick="showEmergency()"
+                class="primary-btn">
+
+                Trigger Emergency Alert
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Share Health Report
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Share Live Location
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Notify Family
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+PART 7 STARTS HERE
+(SETTINGS)
+===================================================== -->
+<!-- =====================================================
+SETTINGS SECTION
+===================================================== -->
+
+<section
+    id="settingsSection"
+    class="dashboard-section"
+    style="display:none;">
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+
+                Settings
+
+            </h1>
+
+            <p>
+
+                Manage your Health Sentinel account and preferences
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+    ACCOUNT
+    ========================= -->
+
+    <div class="settings-card">
+
+        <h2>
+
+            Account
+
+        </h2>
+
+        <div class="settings-list">
+
+            <div class="setting-row">
+
+                <div>
+
+                    <h4>
+
+                        User Name
+
+                    </h4>
+
+                    <p id="patientNameSettings">
+
+                        --
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="setting-row">
+
+                <div>
+
+                    <h4>
+
+                        Email
+
+                    </h4>
+
+                    <p id="userInfoSettings">
+
+                        --
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="setting-row">
+
+                <div>
+
+                    <h4>
+
+                        Account Status
+
+                    </h4>
+
+                    <p>
+
+                        Verified User
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+    APPEARANCE
+    ========================= -->
+
+    <div class="settings-card">
+
+        <h2>
+
+            Appearance
+
+        </h2>
+
+        <div class="settings-list">
+
+            <div class="setting-row">
+
+                <span>
+
+                    Dark Mode
+
+                </span>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        id="darkModeToggle">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+            <div class="setting-row">
+
+                <span>
+
+                    Dashboard Animations
+
+                </span>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+    NOTIFICATIONS
+    ========================= -->
+
+    <div class="settings-card">
+
+        <h2>
+
+            Notifications
+
+        </h2>
+
+        <div class="settings-list">
+
+            <div class="setting-row">
+
+                <span>
+
+                    Email Notifications
+
+                </span>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+            <div class="setting-row">
+
+                <span>
+
+                    Health Alerts
+
+                </span>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+            <div class="setting-row">
+
+                <span>
+
+                    Emergency Notifications
+
+                </span>
+
+                <label class="switch">
+
+                    <input
+                        type="checkbox"
+                        checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+    SECURITY
+    ========================= -->
+
+    <div class="settings-card">
+
+        <h2>
+
+            Security
+
+        </h2>
+
+        <div class="action-grid">
+
+            <button
+                class="outline-btn">
+
+                Change Password
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Download My Data
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Privacy Settings
+
+            </button>
+
+            <button
+                class="primary-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+    ABOUT
+    ========================= -->
+
+    <div class="settings-card">
+
+        <h2>
+
+            About Health Sentinel
+
+        </h2>
+
+        <p>
+
+            Version 2.0 Enterprise Edition
+
+        </p>
+
+        <p>
+
+            AI Powered Smart Healthcare Monitoring Platform
+
+        </p>
+
+        <p>
+
+            Built using HTML, CSS, JavaScript and Firebase.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+FOOTER
+===================================================== -->
+
+<footer class="dashboard-footer">
+
+    <div>
+
+        <h3>
+
+            Health Sentinel
+
+        </h3>
+
+        <p>
+
+            Enterprise AI Healthcare Monitoring Platform
+
+        </p>
+
+    </div>
+
+    <div>
+
+        Version 2.0
+
+    </div>
+
+</footer>
+
+</main>
+
+</div>
+
+</div>
+
+<!-- =====================================================
+PART 8 STARTS HERE
+(EMERGENCY MODAL + SCRIPT IMPORTS)
+===================================================== -->
+<!-- =====================================================
+EMERGENCY MODAL
+===================================================== -->
+
+<div id="emergencyModal" class="emergency-modal">
+
+    <div class="emergency-box">
+
+        <div class="emergency-icon">
+
+            🚨
+
+        </div>
+
+        <h1>
+
+            Medical Emergency Detected
+
+        </h1>
+
+        <p>
+
+            AI has detected abnormal health parameters.
+            Immediate medical attention is recommended.
+
+        </p>
+
+        <div class="emergency-info">
+
+            <div class="emergency-item">
+
+                <span>🚑 Ambulance</span>
+
+                <strong>108</strong>
+
+            </div>
+
+            <div class="emergency-item">
+
+                <span>🚓 Emergency</span>
+
+                <strong>112</strong>
+
+            </div>
+
+            <div class="emergency-item">
+
+                <span>👨‍👩‍👧 Family Contact</span>
+
+                <strong id="familyNumberModal">
+
+                    --
+
+                </strong>
+
+            </div>
+
+        </div>
+
+        <div class="action-grid">
+
+            <button
+                class="primary-btn"
+                onclick="closeEmergency()">
+
+                I Understand
+
+            </button>
+
+            <button
+                class="outline-btn">
+
+                Call 108
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+LOADING OVERLAY
+===================================================== -->
+
+<div
+    id="loadingOverlay"
+    class="loading-overlay"
+    style="display:none;">
+
+    <div class="loader-card">
+
+        <div class="loader"></div>
+
+        <h2>
+
+            Health Sentinel
+
+        </h2>
+
+        <p>
+
+            Loading Dashboard...
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+TOAST NOTIFICATION
+===================================================== -->
+
+<div
+    id="toastContainer">
+
+</div>
+
+<!-- =====================================================
+SCRIPTS
+===================================================== -->
+
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="app.js"></script>
+
+</body>
+</html>

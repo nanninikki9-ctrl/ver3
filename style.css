@@ -1,0 +1,8331 @@
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+    --secondary:#4f46e5;
+
+    --bg:#f8fafc;
+    --card:#ffffff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --border:#e2e8f0;
+
+    --shadow:
+    0 20px 60px rgba(15,23,42,.08);
+}
+
+/* =========================
+RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    margin:0;
+    overflow-x:hidden;
+}
+
+/* =========================
+LOGIN SCREEN
+========================= */
+
+#loginScreen{
+
+    width:100vw;
+    height:100vh;
+
+    display:grid;
+    grid-template-columns:55% 45%;
+
+    background:#f8fafc;
+
+    overflow:hidden;
+}
+
+/* =========================
+LEFT PANEL
+========================= */
+
+.left-panel{
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    padding:50px;
+
+    overflow:hidden;
+}
+
+.left-panel::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.08);
+
+    top:-80px;
+    right:-80px;
+}
+
+.left-panel::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.05);
+
+    bottom:-150px;
+    left:-100px;
+}
+
+/* =========================
+LOGO
+========================= */
+
+.logo{
+    position:relative;
+    z-index:2;
+}
+
+.logo h2{
+
+    color:white;
+
+    font-size:52px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.logo p{
+
+    color:
+    rgba(255,255,255,.85);
+
+    font-size:18px;
+}
+
+.logo-icon{
+
+    font-size:28px;
+
+    margin-bottom:15px;
+}
+
+/* =========================
+IMAGE
+========================= */
+
+.doctor-image{
+
+    flex:1;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+    z-index:2;
+}
+
+.doctor-image img{
+
+    width:85%;
+    max-width:500px;
+    height:auto;
+
+    object-fit:contain;
+
+    filter:
+    drop-shadow(
+        0 20px 40px rgba(0,0,0,.15)
+    );
+}
+
+/* =========================
+COPYRIGHT
+========================= */
+
+.copyright{
+
+    position:relative;
+    z-index:2;
+
+    color:
+    rgba(255,255,255,.8);
+
+    font-size:14px;
+}
+
+/* =========================
+RIGHT PANEL
+========================= */
+
+.right-panel{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#f8fafc;
+
+    padding:40px;
+}
+
+/* =========================
+AUTH CARD
+========================= */
+
+.auth-card{
+
+    width:100%;
+    max-width:450px;
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:45px;
+
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+TABS
+========================= */
+
+.tab-header{
+
+    display:flex;
+
+    gap:25px;
+
+    margin-bottom:35px;
+}
+
+.tab{
+
+    border:none;
+    background:none;
+
+    font-size:17px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    color:#64748b;
+}
+
+.tab.active{
+
+    color:var(--primary);
+
+    border-bottom:
+    3px solid var(--primary);
+
+    padding-bottom:8px;
+}
+
+/* =========================
+INPUTS
+========================= */
+
+.auth-card input{
+
+    width:100%;
+
+    padding:16px 18px;
+
+    border:
+    1px solid var(--border);
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    margin-bottom:18px;
+
+    transition:.3s;
+}
+
+.auth-card input:focus{
+
+    outline:none;
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 4px
+    rgba(37,99,235,.08);
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.auth-btn{
+
+    width:100%;
+
+    border:none;
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    margin-bottom:12px;
+
+    transition:.3s;
+}
+
+.auth-btn:hover{
+
+    transform:
+    translateY(-2px);
+
+    background:
+    var(--primary-dark);
+}
+
+.auth-btn.secondary{
+
+    background:#0f172a;
+}
+
+.auth-btn.secondary:hover{
+
+    background:#020617;
+}
+/* =========================
+TOPBAR
+========================= */
+
+.topbar{
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:#ffffff;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 30px;
+
+    border-bottom:
+    1px solid #e5e7eb;
+
+    box-shadow:
+    0 2px 10px rgba(0,0,0,.04);
+}
+
+.brand{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.brand-icon{
+
+    width:55px;
+    height:55px;
+
+    border-radius:16px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:24px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #60a5fa
+    );
+
+    color:white;
+}
+
+.brand h1{
+
+    font-size:24px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.brand p{
+
+    font-size:13px;
+    color:#64748b;
+}
+
+.system-status{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-weight:700;
+    color:#16a34a;
+}
+
+.pulse-dot{
+
+    width:10px;
+    height:10px;
+
+    border-radius:50%;
+
+    background:#16a34a;
+
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+
+    100%{
+        transform:scale(1.8);
+        opacity:0;
+    }
+}
+
+/* =========================
+DASHBOARD PAGE
+========================= */
+
+#dashboardPage{
+
+    background:#f5f7fb;
+
+    min-height:100vh;
+
+    overflow-y:auto;
+}
+
+/* =========================
+APP WRAPPER
+========================= */
+
+.app{
+
+    max-width:1450px;
+
+    margin:auto;
+
+    padding:25px;
+}
+
+/* =========================
+HERO SECTION
+========================= */
+
+.hero-section{
+
+    margin-bottom:25px;
+}
+
+.hero-card{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr 1fr 1fr;
+
+    gap:20px;
+}
+
+.hero-left{
+
+    background:white;
+
+    padding:28px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+}
+
+.section-label{
+
+    display:inline-block;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+}
+
+.hero-left h2{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+}
+
+.hero-left p{
+
+    color:#64748b;
+
+    margin-bottom:10px;
+}
+
+.status-active{
+
+    display:inline-block;
+
+    padding:10px 16px;
+
+    border-radius:999px;
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    font-weight:700;
+
+    margin-top:10px;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.hero-actions{
+
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+
+    margin-top:20px;
+}
+
+.primary-btn{
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.primary-btn:hover{
+
+    transform:translateY(-2px);
+}
+
+.outline-btn{
+
+    border:2px solid #2563eb;
+
+    background:white;
+
+    color:#2563eb;
+
+    padding:12px 20px;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* =========================
+METRIC CARDS
+========================= */
+
+.metric-card{
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:25px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+}
+
+.metric-header{
+
+    display:flex;
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+    font-weight:700;
+}
+
+.metric-value{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+}
+
+.metric-unit{
+
+    color:#64748b;
+
+    margin-bottom:15px;
+}
+
+.tag{
+
+    display:inline-block;
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.tag.success{
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+}
+
+.tag.warning{
+
+    background:#fff7ed;
+
+    color:#ea580c;
+}
+
+/* =========================
+DEVICE SECTION
+========================= */
+
+.device-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.device-panel,
+.protocol-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+}
+
+.device-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.online-dot{
+
+    width:12px;
+    height:12px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+}
+
+.device-info h4{
+
+    font-size:24px;
+
+    margin-bottom:6px;
+}
+
+.range-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+}
+
+.range-box{
+
+    background:#f8fafc;
+
+    border-radius:14px;
+
+    padding:16px;
+
+    text-align:center;
+}
+
+.range-box span{
+
+    display:block;
+
+    color:#64748b;
+
+    font-size:13px;
+
+    margin-bottom:8px;
+}
+
+.range-box strong{
+
+    font-size:18px;
+}
+/* =========================
+ANALYTICS SECTION
+========================= */
+
+.analytics-section{
+    margin-bottom:25px;
+}
+
+.section-heading{
+    margin-bottom:20px;
+}
+
+.section-heading h2{
+    font-size:28px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.section-heading p{
+    color:#64748b;
+    margin-top:5px;
+}
+
+.summary-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.summary-box{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+}
+
+.summary-box h4{
+
+    color:#64748b;
+
+    margin-bottom:10px;
+}
+
+.summary-value{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:#2563eb;
+}
+
+/* =========================
+CHARTS
+========================= */
+
+.chart-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+}
+
+.chart-card{
+
+    background:white;
+
+    border-radius:24px;
+
+    padding:25px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+}
+
+.chart-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.chart-top h3{
+
+    font-size:18px;
+
+    font-weight:700;
+}
+
+.chart-badge{
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.chart-badge.orange{
+
+    background:#fff7ed;
+
+    color:#ea580c;
+}
+
+.chart-badge.blue{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+}
+
+.chart-card canvas{
+
+    width:100% !important;
+
+    height:300px !important;
+}
+
+/* =========================
+HEALTH SCREENING
+========================= */
+
+.screening-layout{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr;
+
+    gap:20px;
+
+    margin-bottom:25px;
+}
+
+.screening-card,
+.ai-panel{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+}
+
+/* =========================
+HEALTH REPORT BOX
+========================= */
+
+.report{
+
+    padding:20px;
+
+    border-radius:16px;
+
+    margin-top:15px;
+}
+
+.report.success{
+
+    background:#ecfdf5;
+
+    border-left:
+    6px solid #22c55e;
+}
+
+.report.warning{
+
+    background:#fff7ed;
+
+    border-left:
+    6px solid #f59e0b;
+}
+
+.report.danger{
+
+    background:#fef2f2;
+
+    border-left:
+    6px solid #ef4444;
+}
+
+.report-title{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+}
+
+.report-message{
+
+    color:#475569;
+}
+
+/* =========================
+AI PANEL
+========================= */
+
+.ai-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+}
+
+.ai-icon{
+
+    font-size:30px;
+}
+
+.ai-result{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+.insight{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+.insight span{
+
+    color:#64748b;
+}
+
+.insight strong{
+
+    font-size:18px;
+}
+
+.ai-message{
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    line-height:1.6;
+
+    margin-bottom:20px;
+}
+
+/* =========================
+PANELS
+========================= */
+
+.panel{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.06);
+
+    margin-bottom:25px;
+}
+
+.panel-header{
+
+    margin-bottom:20px;
+}
+
+.panel-header h2{
+
+    font-size:24px;
+
+    font-weight:800;
+}
+
+/* =========================
+FORM GRID
+========================= */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+}
+
+.form-grid input{
+
+    padding:15px;
+
+    border:
+    1px solid #dbe3ef;
+
+    border-radius:12px;
+
+    font-size:15px;
+}
+
+.form-grid input:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 4px rgba(37,99,235,.08);
+}
+
+#saveBtn{
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    border-radius:12px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+/* =========================
+TABLE
+========================= */
+
+.table-wrapper{
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+thead{
+
+    background:#f8fafc;
+}
+
+th{
+
+    text-align:left;
+
+    padding:16px;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#475569;
+}
+
+td{
+
+    padding:16px;
+
+    border-bottom:
+    1px solid #e5e7eb;
+}
+
+.good{
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.bad{
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+/* =========================
+EMERGENCY MODAL
+========================= */
+
+.emergency-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.75);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+}
+
+.emergency-box{
+
+    width:90%;
+
+    max-width:600px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    animation:popup .3s ease;
+}
+
+.emergency-box h1{
+
+    color:#dc2626;
+
+    margin-bottom:15px;
+}
+
+.emergency-details{
+
+    background:#fff5f5;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    margin:20px 0;
+}
+
+.emergency-box button{
+
+    border:none;
+
+    background:#dc2626;
+
+    color:white;
+
+    padding:14px 30px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:700;
+}
+
+@keyframes popup{
+
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#64748b;
+}
+/* ===================================
+LARGE SCREENS
+=================================== */
+
+@media (min-width:1600px){
+
+    .app{
+        max-width:1600px;
+    }
+
+    .hero-card{
+        grid-template-columns:
+        2fr 1fr 1fr 1fr;
+    }
+
+    .chart-card canvas{
+        height:350px !important;
+    }
+
+}
+
+/* ===================================
+LAPTOPS
+=================================== */
+
+@media (max-width:1400px){
+
+    .hero-card{
+        grid-template-columns:
+        1fr 1fr;
+    }
+
+    .chart-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+/* ===================================
+TABLETS
+=================================== */
+
+@media (max-width:1200px){
+
+    .hero-card{
+        grid-template-columns:1fr;
+    }
+
+    .device-grid{
+        grid-template-columns:1fr;
+    }
+
+    .chart-grid{
+        grid-template-columns:1fr;
+    }
+
+    .summary-grid{
+        grid-template-columns:1fr;
+    }
+
+    .screening-layout{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+/* ===================================
+MOBILE LOGIN
+=================================== */
+
+@media (max-width:900px){
+
+    #loginScreen{
+        grid-template-columns:1fr;
+    }
+
+   .logo h2{
+    font-size:56px;
+    font-weight:800;
+    line-height:1.1;
+}
+
+.logo p{
+    font-size:20px;
+    opacity:.9;
+}
+
+   .right-panel{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#f8fafc;
+}
+
+.auth-card{
+    width:100%;
+    max-width:500px;
+}
+    .auth-card{
+
+        width:100%;
+        max-width:450px;
+
+        padding:35px;
+
+        border-radius:24px;
+    }
+
+}
+
+/* ===================================
+MOBILE DASHBOARD
+=================================== */
+
+@media (max-width:768px){
+
+    .topbar{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        text-align:center;
+
+        padding:20px;
+    }
+
+    .brand{
+
+        justify-content:center;
+    }
+
+    .app{
+        padding:15px;
+    }
+
+    .hero-left{
+        padding:20px;
+    }
+
+    .hero-left h2{
+        font-size:26px;
+    }
+
+    .metric-card{
+        padding:20px;
+    }
+
+    .metric-value{
+        font-size:32px;
+    }
+
+    .range-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .summary-value{
+        font-size:28px;
+    }
+
+    .chart-card{
+        padding:15px;
+    }
+
+    .chart-card canvas{
+        height:250px !important;
+    }
+
+    .panel{
+        padding:20px;
+    }
+
+    .screening-card,
+    .ai-panel{
+        padding:20px;
+    }
+
+    .hero-actions{
+        flex-direction:column;
+    }
+
+    .primary-btn,
+    .outline-btn{
+        width:100%;
+    }
+
+}
+
+/* ===================================
+SMALL MOBILE
+=================================== */
+
+@media (max-width:480px){
+
+    .brand h1{
+        font-size:20px;
+    }
+
+    .hero-left h2{
+        font-size:22px;
+    }
+
+    .metric-value{
+        font-size:28px;
+    }
+
+    .summary-value{
+        font-size:24px;
+    }
+
+    .panel-header h2{
+        font-size:20px;
+    }
+
+    .report-title{
+        font-size:18px;
+    }
+
+    .auth-card{
+        padding:25px;
+    }
+
+    .auth-card input{
+        padding:14px;
+    }
+
+    .auth-btn{
+        padding:14px;
+    }
+
+}
+
+/* ===================================
+SCROLLBAR
+=================================== */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f5f9;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#94a3b8;
+}
+
+/* ===================================
+ANIMATIONS
+=================================== */
+
+.metric-card,
+.chart-card,
+.panel,
+.device-panel,
+.protocol-card,
+.summary-box,
+.ai-panel,
+.screening-card{
+
+    transition:.3s;
+}
+
+.metric-card:hover,
+.chart-card:hover,
+.panel:hover,
+.device-panel:hover,
+.protocol-card:hover,
+.summary-box:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.08);
+}
+
+/* ===================================
+FINAL FIXES
+=================================== */
+#profilePage{
+    display:none;
+    width:100%;
+    min-height:100vh;
+    overflow-y:auto;
+}
+#dashboardPage{
+    min-height:100vh;
+    background:#f5f7fb;
+}
+
+#loginScreen{
+    min-height:100vh;
+}
+#loginScreen{
+    display:grid;
+    grid-template-columns:50% 60%;
+
+    width:100vw;
+    height:100vh;
+}
+#loginScreen{
+    display:grid;
+    grid-template-columns:50% 50%;
+
+    width:100vw;
+    height:100vh;
+}
+.right-panel{
+
+    display:flex;
+
+    justify-content:flex-start;
+
+    align-items:center;
+
+    padding-left:120px;
+
+    background:#f8fafc;
+}
+.right-panel{
+
+    display:grid;
+
+    place-items:center;
+
+    background:#f8fafc;
+}
+
+.auth-card{
+
+    width:500px;
+    max-width:90%;
+}
+#loginScreen{
+    grid-template-columns:1fr 1fr;
+}
+
+.right-panel{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+#loginScreen{
+    grid-template-columns:50% 50%;
+}
+
+.right-panel{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.auth-card{
+    width:500px;
+}
+/* FORCE CENTER LOGIN CARD */
+
+/* DASHBOARD SCROLL FIX */
+
+#dashboardPage{
+    display:block;
+    min-height:100vh;
+    overflow-y:auto !important;
+    overflow-x:hidden;
+}
+
+.app{
+    min-height:auto;
+    padding-bottom:120px;
+}
+/* PROFILE PAGE */
+
+#profilePage{
+    display:none;
+    width:100%;
+    min-height:100vh;
+    background:#f5f7fb;
+    padding:40px;
+}
+
+.profile-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.profile-card{
+    width:100%;
+    max-width:900px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    margin-bottom:8px;
+    font-weight:600;
+}
+
+.input-group input,
+.input-group select{
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.save-profile-btn{
+    margin-top:30px;
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:#2563eb;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+/* PROFILE PAGE */
+
+#profilePage{
+    display:none;
+    width:100%;
+    height:100vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    background:#f5f7fb;
+    padding:40px 20px;
+}
+
+.profile-wrapper{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    min-height:100%;
+    padding:30px 0;
+}
+
+.profile-card{
+    width:100%;
+    max-width:900px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 10px 30px rgba(0,0,0,.1);
+    margin-bottom:40px;
+}
+/* ===== DASHBOARD ===== */
+
+#dashboardPage{
+    display:none;
+    width:100%;
+    height:100vh;
+    overflow-y:auto !important;
+    overflow-x:hidden;
+    background:#f5f7fb;
+}
+
+.app{
+    max-width:1450px;
+    margin:0 auto;
+    padding:25px;
+    padding-bottom:80px;
+}
+/* Force Dashboard Scroll */
+
+body{
+    overflow-x:hidden;
+}
+
+#dashboardPage{
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    height:100vh !important;
+    display:none;
+}
+
+#dashboardPage::-webkit-scrollbar{
+    width:10px;
+}
+
+#dashboardPage::-webkit-scrollbar-thumb{
+    background:#bfc7d5;
+    border-radius:10px;
+}
+/* =========================================
+ONBOARDING
+========================================= */
+
+#onboardingScreen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    z-index:999999;
+}
+
+.onboard-page{
+    display:none;
+    width:100%;
+    height:100%;
+    justify-content:center;
+    align-items:center;
+    animation:fadeSlide .5s ease;
+}
+
+.onboard-page.active{
+    display:flex;
+}
+
+.onboard-card{
+
+    width:90%;
+    max-width:650px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:30px;
+
+    padding:50px;
+
+    text-align:center;
+
+    color:#fff;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.18);
+
+}
+
+.onboard-icon{
+
+    width:120px;
+    height:120px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:60px;
+
+    background:rgba(255,255,255,.18);
+
+    margin-bottom:30px;
+
+}
+
+.onboard-card h1{
+
+    font-size:42px;
+
+    margin-bottom:20px;
+
+    font-weight:800;
+
+}
+
+.onboard-card p{
+
+    font-size:20px;
+
+    line-height:1.8;
+
+    opacity:.95;
+
+    margin-bottom:35px;
+
+}
+
+.tips{
+
+    background:rgba(255,255,255,.12);
+
+    padding:25px;
+
+    border-radius:18px;
+
+    text-align:left;
+
+    font-size:18px;
+
+    line-height:2;
+
+}
+
+.progress{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin:35px 0;
+
+}
+
+.progress span{
+
+    width:14px;
+
+    height:14px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.35);
+
+}
+
+.progress .active-dot{
+
+    width:40px;
+
+    border-radius:30px;
+
+    background:white;
+
+}
+
+.buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.buttons button{
+
+    flex:1;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.skipBtn{
+
+    background:rgba(255,255,255,.2);
+
+    color:#fff;
+
+}
+
+.nextBtn,
+.startBtn{
+
+    background:#fff;
+
+    color:#2563eb;
+
+}
+
+.buttons button:hover{
+
+    transform:translateY(-3px);
+
+}
+
+@keyframes fadeSlide{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+.onboard-card{
+
+    padding:30px;
+
+}
+
+.onboard-card h1{
+
+    font-size:30px;
+
+}
+
+.onboard-card p{
+
+    font-size:17px;
+
+}
+
+.tips{
+
+    font-size:16px;
+
+}
+
+.buttons{
+
+    flex-direction:column;
+
+}
+
+}
+/* =====================================================
+HEALTH SENTINEL PRO DASHBOARD
+PART 1
+===================================================== */
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+
+    --success:#10b981;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+
+    --sidebar:#111827;
+    --sidebar-hover:#1f2937;
+
+    --background:#f4f7fc;
+    --card:#ffffff;
+
+    --text:#111827;
+    --text-light:#6b7280;
+
+    --border:#e5e7eb;
+
+    --shadow:
+    0 12px 35px rgba(15,23,42,.08);
+
+}
+
+/* ===================================
+BODY
+=================================== */
+
+#dashboardPage{
+
+    background:var(--background);
+
+    min-height:100vh;
+
+    overflow-y:auto;
+
+    color:var(--text);
+
+}
+
+/* ===================================
+TOPBAR
+=================================== */
+
+.topbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+    height:78px;
+
+    background:white;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+    border-bottom:1px solid var(--border);
+
+    box-shadow:0 2px 10px rgba(0,0,0,.05);
+
+}
+
+.top-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.menu-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#eef2ff;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.brand-logo{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+    color:white;
+
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+}
+
+.brand h2{
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+.brand p{
+
+    color:var(--text-light);
+
+    font-size:13px;
+
+}
+
+.top-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.search-box{
+
+    width:280px;
+
+    height:46px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:0 18px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.search-box:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+
+}
+
+.icon-btn{
+
+    width:46px;
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#eef2ff;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+}
+
+.profile-chip{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:white;
+
+    font-weight:700;
+
+    font-size:18px;
+
+}
+
+.profile-chip small{
+
+    color:var(--success);
+
+    font-weight:600;
+
+}
+
+/* ===================================
+LAYOUT
+=================================== */
+
+.dashboard-layout{
+
+    display:grid;
+
+    grid-template-columns:260px 1fr;
+
+    min-height:calc(100vh - 78px);
+
+}
+
+/* ===================================
+SIDEBAR
+=================================== */
+
+.sidebar{
+
+    background:var(--sidebar);
+
+    color:white;
+
+    padding:30px 20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.sidebar-title{
+
+    font-size:13px;
+
+    color:#9ca3af;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    margin-bottom:25px;
+
+}
+
+.sidebar a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    text-decoration:none;
+
+    color:#d1d5db;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    margin-bottom:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:600;
+
+}
+
+.sidebar a:hover{
+
+    background:var(--sidebar-hover);
+
+    color:white;
+
+}
+
+.sidebar a.active{
+
+    background:linear-gradient(90deg,#2563eb,#3b82f6);
+
+    color:white;
+
+}
+
+.logout-btn{
+
+    margin-top:auto;
+
+    border:none;
+
+    background:#ef4444;
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#dc2626;
+
+}
+
+/* ===================================
+CONTENT
+=================================== */
+
+.dashboard-content{
+
+    padding:30px;
+
+}
+
+/* ===================================
+WELCOME CARD
+=================================== */
+
+.welcome-banner{
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:white;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.section-badge{
+
+    display:inline-block;
+
+    background:rgba(255,255,255,.18);
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+
+}
+
+.welcome-banner h1{
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+}
+
+.welcome-banner p{
+
+    opacity:.9;
+
+}
+
+.sync-box{
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(15px);
+
+    padding:22px;
+
+    border-radius:18px;
+
+    min-width:220px;
+
+    text-align:center;
+
+}
+
+.sync-box span{
+
+    display:block;
+
+    opacity:.8;
+
+    margin-bottom:8px;
+
+}
+
+.sync-box strong{
+
+    font-size:20px;
+
+}
+
+/* ===================================
+METRIC GRID
+=================================== */
+
+.metrics-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:24px;
+
+    margin-bottom:30px;
+
+}
+
+.metric-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.metric-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 20px 40px rgba(37,99,235,.12);
+
+}
+
+.metric-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    background:#eef4ff;
+
+}
+
+.metric-card small{
+
+    display:block;
+
+    color:var(--text-light);
+
+    margin-bottom:8px;
+
+}
+
+.metric-card h2{
+
+    font-size:34px;
+
+    margin-bottom:6px;
+
+}
+
+.metric-card span{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+/* =====================================================
+HEALTH SENTINEL PRO DASHBOARD
+PART 2
+===================================================== */
+
+/* ===================================
+SECOND ROW
+=================================== */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 380px;
+
+    gap:28px;
+
+    margin-bottom:35px;
+
+}
+
+/* ===================================
+BIG CARD
+=================================== */
+
+.big-card{
+
+    background:var(--card);
+
+    border-radius:24px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.big-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #3b82f6,
+        #60a5fa
+    );
+
+}
+
+.card-title{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:25px;
+
+    color:var(--text);
+
+}
+
+.big-card canvas{
+
+    width:100% !important;
+
+    height:430px !important;
+
+}
+
+/* ===================================
+RIGHT SIDE
+=================================== */
+
+.right-stack{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+/* ===================================
+SMALL CARDS
+=================================== */
+
+.small-card{
+
+    background:var(--card);
+
+    border-radius:24px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.small-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+    0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.small-card h3{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+.small-card hr{
+
+    border:none;
+
+    border-top:1px solid var(--border);
+
+    margin-bottom:18px;
+
+}
+
+.small-card p{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:16px;
+
+    color:var(--text-light);
+
+}
+
+.small-card strong{
+
+    color:var(--text);
+
+    font-size:16px;
+
+}
+
+/* ===================================
+DEVICE BUTTONS
+=================================== */
+
+.device-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:25px;
+
+}
+
+.device-buttons button{
+
+    flex:1;
+
+    border:none;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.device-buttons button:first-child{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.device-buttons button:last-child{
+
+    background:#ef4444;
+
+    color:white;
+
+}
+
+.device-buttons button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ===================================
+SECTION TITLE
+=================================== */
+
+.section-title{
+
+    margin-bottom:25px;
+
+}
+
+.section-title h2{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:var(--text);
+
+}
+
+.section-title p{
+
+    margin-top:6px;
+
+    color:var(--text-light);
+
+}
+
+/* ===================================
+ANALYTICS
+=================================== */
+
+.analytics-section{
+
+    margin-bottom:35px;
+
+}
+
+.analytics-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:22px;
+
+}
+
+.analytics-card{
+
+    background:var(--card);
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.analytics-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-20px;
+
+    top:-20px;
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:50%;
+
+    background:rgba(37,99,235,.06);
+
+}
+
+.analytics-card small{
+
+    display:block;
+
+    color:var(--text-light);
+
+    margin-bottom:15px;
+
+    font-size:14px;
+
+}
+
+.analytics-card h2{
+
+    font-size:36px;
+
+    color:var(--primary);
+
+}
+
+/* ===================================
+CHART SECTION
+=================================== */
+
+.chart-section{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:24px;
+
+    margin-bottom:35px;
+
+}
+
+.chart-card{
+
+    background:var(--card);
+
+    border-radius:24px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.chart-card h3{
+
+    margin-bottom:20px;
+
+    font-size:20px;
+
+}
+
+.chart-card canvas{
+
+    width:100% !important;
+
+    height:320px !important;
+
+}
+
+/* ===================================
+AI REVIEW
+=================================== */
+
+.ai-review{
+
+    margin-bottom:35px;
+
+}
+
+.ai-card{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+
+    color:white;
+
+    border-radius:28px;
+
+    padding:35px;
+
+    box-shadow:
+
+    0 20px 60px rgba(15,23,42,.18);
+
+}
+
+.ai-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+}
+
+.ai-header h2{
+
+    font-size:30px;
+
+}
+
+.ai-header p{
+
+    margin-top:6px;
+
+    color:#cbd5e1;
+
+}
+
+.ai-badge{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    rgba(255,255,255,.12);
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.risk-row{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.risk-row span{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:8px;
+
+}
+
+.risk-row h1{
+
+    font-size:54px;
+
+}
+
+.risk-row h2{
+
+    font-size:30px;
+
+}
+
+.ai-text{
+
+    background:
+
+    rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:20px;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+.generate-btn{
+
+    background:white;
+
+    color:#111827;
+
+    border:none;
+
+    padding:16px 28px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.generate-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#f8fafc;
+
+}
+/* =====================================================
+HEALTH SENTINEL PRO DASHBOARD
+PART 3
+===================================================== */
+
+/* ===================================
+READING INPUT
+=================================== */
+
+.input-section{
+
+    background:var(--card);
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:35px;
+
+}
+
+.reading-form{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    margin-top:25px;
+
+}
+
+.reading-form input{
+
+    height:56px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:0 18px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+    background:#fff;
+
+}
+
+.reading-form input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+
+}
+
+.reading-form button{
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        #3b82f6
+    );
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.reading-form button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 25px rgba(37,99,235,.25);
+
+}
+
+/* ===================================
+HISTORY
+=================================== */
+
+.history-section{
+
+    margin-bottom:40px;
+
+}
+
+.history-card{
+
+    background:var(--card);
+
+    border-radius:24px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+.history-card table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.history-card thead{
+
+    background:#f8fafc;
+
+}
+
+.history-card th{
+
+    padding:18px 22px;
+
+    text-align:left;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#64748b;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.history-card td{
+
+    padding:18px 22px;
+
+    border-bottom:1px solid #edf2f7;
+
+    transition:.2s;
+
+}
+
+.history-card tbody tr:hover{
+
+    background:#f8fbff;
+
+}
+
+.history-card tbody tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+/* ===================================
+STATUS BADGES
+=================================== */
+
+.status-good{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.status-warning{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:#fff7ed;
+
+    color:#ea580c;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.status-danger{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+/* ===================================
+FOOTER
+=================================== */
+
+.dashboard-footer{
+
+    margin-top:50px;
+
+    padding:30px;
+
+    border-top:1px solid var(--border);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:#6b7280;
+
+}
+
+.dashboard-footer h3{
+
+    color:#111827;
+
+    margin-bottom:6px;
+
+}
+
+/* ===================================
+CUSTOM SCROLLBAR
+=================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef2f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+/* ===================================
+SMOOTH ANIMATIONS
+=================================== */
+
+.metric-card,
+.analytics-card,
+.small-card,
+.big-card,
+.chart-card,
+.input-section,
+.history-card,
+.ai-card{
+
+    animation:fadeUp .6s ease both;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+button{
+
+    transition:all .25s ease;
+
+}
+
+button:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ===================================
+RESPONSIVE
+=================================== */
+
+@media(max-width:1400px){
+
+.dashboard-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.right-stack{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+.metrics-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.analytics-grid{
+
+    grid-template-columns:repeat(3,1fr);
+
+}
+
+}
+
+@media(max-width:1100px){
+
+.dashboard-layout{
+
+    grid-template-columns:90px 1fr;
+
+}
+
+.sidebar-title{
+
+    display:none;
+
+}
+
+.sidebar a{
+
+    justify-content:center;
+
+    font-size:0;
+
+}
+
+.sidebar a::first-letter{
+
+    font-size:22px;
+
+}
+
+.logout-btn{
+
+    font-size:13px;
+
+    padding:12px;
+
+}
+
+.search-box{
+
+    width:180px;
+
+}
+
+.chart-section{
+
+    grid-template-columns:1fr;
+
+}
+
+.reading-form{
+
+    grid-template-columns:1fr 1fr;
+
+}
+
+.analytics-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.topbar{
+
+    flex-direction:column;
+
+    height:auto;
+
+    padding:20px;
+
+    gap:20px;
+
+}
+
+.top-left,
+.top-right{
+
+    width:100%;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+}
+
+.dashboard-layout{
+
+    grid-template-columns:1fr;
+
+}
+
+.sidebar{
+
+    flex-direction:row;
+
+    overflow-x:auto;
+
+    gap:10px;
+
+    padding:15px;
+
+}
+
+.sidebar a{
+
+    white-space:nowrap;
+
+    font-size:14px;
+
+    justify-content:flex-start;
+
+}
+
+.sidebar a::first-letter{
+
+    font-size:14px;
+
+}
+
+.logout-btn{
+
+    margin-top:0;
+
+}
+
+.dashboard-content{
+
+    padding:18px;
+
+}
+
+.welcome-banner{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+}
+
+.metrics-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.right-stack{
+
+    grid-template-columns:1fr;
+
+}
+
+.reading-form{
+
+    grid-template-columns:1fr;
+
+}
+
+.chart-section{
+
+    grid-template-columns:1fr;
+
+}
+
+.dashboard-footer{
+
+    flex-direction:column;
+
+    gap:15px;
+
+    text-align:center;
+
+}
+
+.big-card canvas{
+
+    height:280px !important;
+
+}
+
+.chart-card canvas{
+
+    height:220px !important;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.search-box{
+
+    width:100%;
+
+}
+
+.brand h2{
+
+    font-size:18px;
+
+}
+
+.welcome-banner h1{
+
+    font-size:28px;
+
+}
+
+.metric-card h2{
+
+    font-size:28px;
+
+}
+
+.analytics-card h2{
+
+    font-size:28px;
+
+}
+
+.risk-row{
+
+    grid-template-columns:1fr;
+
+}
+
+.risk-row h1{
+
+    font-size:40px;
+
+}
+
+.ai-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+}
+
+}
+
+/* ===================================
+PREMIUM GLASS EFFECTS
+=================================== */
+
+.big-card,
+.small-card,
+.analytics-card,
+.chart-card{
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,.7);
+
+}
+
+/* ===================================
+CARD TOP BORDER
+=================================== */
+
+.metric-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.metric-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #60a5fa
+    );
+
+}
+
+/* ===================================
+END
+=================================== */
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 1
+==========================================================*/
+
+/*==========================
+ROOT
+==========================*/
+
+:root{
+
+    --primary:#2563eb;
+    --primary-dark:#1d4ed8;
+
+    --secondary:#4f46e5;
+
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+
+    --background:#f4f7fc;
+
+    --sidebar:#0f172a;
+
+    --card:#ffffff;
+
+    --text:#0f172a;
+
+    --text-light:#64748b;
+
+    --border:#e5e7eb;
+
+    --radius:22px;
+
+    --shadow:
+
+        0 12px 35px
+
+        rgba(15,23,42,.08);
+
+}
+
+/*==========================
+RESET
+==========================*/
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:
+
+    "Inter",
+
+    sans-serif;
+
+    background:
+
+    var(--background);
+
+    color:
+
+    var(--text);
+
+    overflow-x:hidden;
+
+}
+
+/*==========================
+DASHBOARD
+==========================*/
+
+#dashboardPage{
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:
+
+    var(--background);
+
+}
+
+/*==========================
+LAYOUT
+==========================*/
+
+.dashboard-layout{
+
+    display:grid;
+
+    grid-template-columns:
+
+    270px
+
+    1fr;
+
+    min-height:
+
+    calc(100vh - 80px);
+
+}
+
+/*==========================
+TOPBAR
+==========================*/
+
+.topbar{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:999;
+
+    height:80px;
+
+    background:#fff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 35px;
+
+    border-bottom:
+
+    1px solid
+
+    var(--border);
+
+    box-shadow:
+
+    0 3px 10px
+
+    rgba(0,0,0,.05);
+
+}
+
+.top-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.top-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+/*==========================
+MENU BUTTON
+==========================*/
+
+.menu-btn{
+
+    width:48px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#eff6ff;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    transition:.3s;
+
+}
+
+.menu-btn:hover{
+
+    background:#dbeafe;
+
+}
+
+/*==========================
+LOGO
+==========================*/
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.brand-logo{
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #2563eb,
+
+    #60a5fa
+
+    );
+
+}
+
+.brand h2{
+
+    font-size:23px;
+
+    font-weight:800;
+
+}
+
+.brand p{
+
+    color:
+
+    var(--text-light);
+
+    font-size:13px;
+
+}
+
+/*==========================
+SEARCH
+==========================*/
+
+.search-box{
+
+    width:300px;
+
+    height:48px;
+
+    border:
+
+    1px solid
+
+    var(--border);
+
+    border-radius:14px;
+
+    padding:0 18px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.search-box:focus{
+
+    border-color:
+
+    var(--primary);
+
+    box-shadow:
+
+    0 0 0 4px
+
+    rgba(37,99,235,.08);
+
+}
+
+/*==========================
+PROFILE
+==========================*/
+
+.profile-chip{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.avatar{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:
+
+    linear-gradient(
+
+    135deg,
+
+    #2563eb,
+
+    #3b82f6
+
+    );
+
+    color:#fff;
+
+    font-weight:700;
+
+}
+
+.profile-chip small{
+
+    color:
+
+    var(--success);
+
+}
+
+/*==========================
+SIDEBAR
+==========================*/
+
+.sidebar{
+
+    background:
+
+    var(--sidebar);
+
+    color:#fff;
+
+    padding:30px 20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.sidebar-title{
+
+    color:#94a3b8;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-size:12px;
+
+    margin-bottom:25px;
+
+}
+
+.sidebar a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    color:#cbd5e1;
+
+    text-decoration:none;
+
+    margin-bottom:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-weight:600;
+
+}
+
+.sidebar a:hover{
+
+    background:#1e293b;
+
+    color:#fff;
+
+}
+
+.sidebar a.active{
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    #2563eb,
+
+    #3b82f6
+
+    );
+
+    color:#fff;
+
+}
+
+.logout-btn{
+
+    margin-top:auto;
+
+    border:none;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#dc2626;
+
+}
+
+/*==========================
+CONTENT
+==========================*/
+
+.dashboard-content{
+
+    padding:35px;
+
+}
+
+/*==========================
+COMMON SECTION
+==========================*/
+
+.dashboard-section{
+
+    display:none;
+
+    animation:
+
+    fadeIn .35s ease;
+
+}
+
+.dashboard-section.active{
+
+    display:block;
+
+}
+
+/*==========================
+HEADERS
+==========================*/
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.section-header h1{
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+
+.section-header p{
+
+    margin-top:8px;
+
+    color:
+
+    var(--text-light);
+
+}
+
+/*==========================
+CARDS
+==========================*/
+
+.card,
+
+.metric-card,
+
+.patient-card,
+
+.analytics-card,
+
+.device-card,
+
+.settings-card{
+
+    background:
+
+    var(--card);
+
+    border-radius:
+
+    var(--radius);
+
+    box-shadow:
+
+    var(--shadow);
+
+}
+
+/*==========================
+BUTTONS
+==========================*/
+
+.primary-btn{
+
+    border:none;
+
+    background:
+
+    var(--primary);
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.primary-btn:hover{
+
+    transform:
+
+    translateY(-2px);
+
+}
+
+.outline-btn{
+
+    border:
+
+    2px solid
+
+    var(--primary);
+
+    background:white;
+
+    color:
+
+    var(--primary);
+
+    padding:14px 22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+.outline-btn:hover{
+
+    background:
+
+    #eff6ff;
+
+}
+
+.danger-btn{
+
+    border:none;
+
+    background:
+
+    var(--danger);
+
+    color:white;
+
+    padding:14px 22px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+
+}
+
+/*==========================
+ANIMATION
+==========================*/
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+
+        translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+
+        translateY(0);
+
+    }
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 2
+DASHBOARD HOME
+==========================================================*/
+
+/*==========================
+WELCOME BANNER
+==========================*/
+
+.welcome-banner{
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #4f46e5
+    );
+
+    color:#fff;
+
+    border-radius:28px;
+
+    padding:40px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.welcome-banner::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:320px;
+
+    height:320px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    top:-140px;
+
+    right:-80px;
+
+}
+
+.welcome-banner::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+    bottom:-100px;
+
+    left:-60px;
+
+}
+
+.welcome-banner>*{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+.section-badge{
+
+    display:inline-block;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.18);
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin-bottom:18px;
+
+}
+
+.welcome-banner h1{
+
+    font-size:40px;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+
+}
+
+.welcome-banner p{
+
+    font-size:16px;
+
+    opacity:.92;
+
+    max-width:520px;
+
+    line-height:1.7;
+
+}
+
+/*==========================
+SYNC CARD
+==========================*/
+
+.sync-box{
+
+    min-width:240px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    backdrop-filter:blur(15px);
+
+    background:rgba(255,255,255,.15);
+
+    border:1px solid rgba(255,255,255,.2);
+
+}
+
+.sync-box span{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+    opacity:.85;
+
+}
+
+.sync-box strong{
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+/*==========================
+METRICS GRID
+==========================*/
+
+.metrics-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+/*==========================
+METRIC CARD
+==========================*/
+
+.metric-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    padding:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    transition:.3s;
+
+}
+
+.metric-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #2563eb,
+        #60a5fa
+    );
+
+}
+
+.metric-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 25px 50px rgba(37,99,235,.15);
+
+}
+
+.metric-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    background:#eff6ff;
+
+}
+
+.metric-card small{
+
+    display:block;
+
+    color:var(--text-light);
+
+    font-size:13px;
+
+    margin-bottom:8px;
+
+}
+
+.metric-card h2{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+.metric-card span{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/*==========================
+DASHBOARD GRID
+==========================*/
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 380px;
+
+    gap:30px;
+
+    margin-top:20px;
+
+}
+
+/*==========================
+BIG CARD
+==========================*/
+
+.big-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.big-card h2{
+
+    font-size:24px;
+
+    margin-bottom:20px;
+
+}
+
+.big-card canvas{
+
+    width:100%!important;
+
+    height:420px!important;
+
+}
+
+/*==========================
+RIGHT PANEL
+==========================*/
+
+.right-stack{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:25px;
+
+}
+
+.small-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.small-card h3{
+
+    margin-bottom:18px;
+
+    font-size:22px;
+
+}
+
+.small-card hr{
+
+    border:none;
+
+    border-top:1px solid var(--border);
+
+    margin-bottom:18px;
+
+}
+
+.small-card p{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:15px;
+
+    color:var(--text-light);
+
+}
+
+.small-card strong{
+
+    color:var(--text);
+
+}
+
+/*==========================
+DEVICE BUTTONS
+==========================*/
+
+.device-buttons{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+/*==========================
+LIVE STATUS
+==========================*/
+
+.live-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:700;
+
+    color:var(--success);
+
+}
+
+.live-dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:var(--success);
+
+    animation:pulse 1.4s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(1.8);
+
+        opacity:0;
+
+    }
+
+}
+
+/*==========================
+TABLET
+==========================*/
+
+@media(max-width:1200px){
+
+.metrics-grid{
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+}
+
+.dashboard-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.right-stack{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:20px;
+
+}
+
+}
+
+/*==========================
+MOBILE
+==========================*/
+
+@media(max-width:768px){
+
+.welcome-banner{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:25px;
+
+}
+
+.metrics-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.right-stack{
+
+    grid-template-columns:1fr;
+
+}
+
+.big-card canvas{
+
+    height:300px!important;
+
+}
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 3
+LIVE MONITORING
+==========================================================*/
+
+/*==========================
+DEVICE OVERVIEW
+==========================*/
+
+.device-overview{
+
+    margin-bottom:30px;
+
+}
+
+.device-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.device-card h3{
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+}
+
+/*==========================
+DEVICE GRID
+==========================*/
+
+.device-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+
+    margin-bottom:30px;
+
+}
+
+.device-item{
+
+    background:#f8fafc;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+}
+
+.device-item span{
+
+    display:block;
+
+    color:var(--text-light);
+
+    margin-bottom:10px;
+
+    font-size:14px;
+
+}
+
+.device-item strong{
+
+    font-size:24px;
+
+    color:var(--primary);
+
+    font-weight:700;
+
+}
+
+/*==========================
+DEVICE ACTIONS
+==========================*/
+
+.device-actions{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.device-actions button{
+
+    flex:1;
+
+}
+
+/*==========================
+MONITOR CARD
+==========================*/
+
+.monitor-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:30px;
+
+}
+
+.monitor-card canvas{
+
+    width:100%!important;
+
+    height:420px!important;
+
+}
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.card-header h2{
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.card-header p{
+
+    color:var(--text-light);
+
+    margin-top:5px;
+
+}
+
+/*==========================
+DUAL CHARTS
+==========================*/
+
+.dual-chart-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+/*==========================
+LIVE READING GRID
+==========================*/
+
+.live-reading-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.reading-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:var(--shadow);
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.reading-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.reading-card h4{
+
+    color:var(--text-light);
+
+    margin-bottom:15px;
+
+    font-size:15px;
+
+}
+
+.reading-value{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+}
+
+/*==========================
+LIVE PULSE
+==========================*/
+
+.reading-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.reading-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        #10b981,
+        #34d399
+    );
+
+}
+
+/*==========================
+CHART CONTAINER
+==========================*/
+
+.monitor-card{
+
+    position:relative;
+
+}
+
+.monitor-card::after{
+
+    content:"LIVE";
+
+    position:absolute;
+
+    top:25px;
+
+    right:30px;
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    font-size:12px;
+
+    font-weight:700;
+
+}
+
+/*==========================
+DEVICE STATUS COLORS
+==========================*/
+
+.device-item strong{
+
+    display:block;
+
+}
+
+.device-item:nth-child(1) strong{
+
+    color:#10b981;
+
+}
+
+.device-item:nth-child(2) strong{
+
+    color:#2563eb;
+
+}
+
+.device-item:nth-child(3) strong{
+
+    color:#f59e0b;
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:1200px){
+
+.device-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.dual-chart-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.live-reading-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.monitor-card canvas{
+
+    height:320px!important;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.device-actions{
+
+    flex-direction:column;
+
+}
+
+.device-card{
+
+    padding:20px;
+
+}
+
+.monitor-card{
+
+    padding:20px;
+
+}
+
+.reading-card{
+
+    padding:20px;
+
+}
+
+.reading-value{
+
+    font-size:32px;
+
+}
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 4
+PATIENT PROFILE
+==========================================================*/
+
+/*==========================
+PATIENT SUMMARY
+==========================*/
+
+.patient-summary-card{
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:#fff;
+
+    border-radius:28px;
+
+    padding:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+    margin-bottom:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.patient-avatar{
+
+    width:110px;
+
+    height:110px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:48px;
+
+    background:rgba(255,255,255,.18);
+
+    border:5px solid rgba(255,255,255,.25);
+
+}
+
+.patient-basic h2{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    margin-bottom:10px;
+
+}
+
+.patient-basic p{
+
+    opacity:.9;
+
+    font-size:16px;
+
+}
+
+/*==========================
+PATIENT GRID
+==========================*/
+
+.patient-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+/*==========================
+PATIENT CARD
+==========================*/
+
+.patient-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.patient-card h3{
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+}
+
+/*==========================
+INFO LIST
+==========================*/
+
+.info-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.info-row span{
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+.info-row strong{
+
+    font-size:16px;
+
+    color:var(--text);
+
+}
+
+/*==========================
+THRESHOLD GRID
+==========================*/
+
+.threshold-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:20px;
+
+    margin-top:20px;
+
+}
+
+.threshold-box{
+
+    background:#f8fafc;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transition:.3s;
+
+}
+
+.threshold-box:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.threshold-box span{
+
+    display:block;
+
+    color:var(--text-light);
+
+    margin-bottom:12px;
+
+}
+
+.threshold-box h2{
+
+    font-size:34px;
+
+    color:var(--primary);
+
+    margin-bottom:8px;
+
+}
+
+.threshold-box small{
+
+    color:var(--text-light);
+
+}
+
+/*==========================
+ACTION GRID
+==========================*/
+
+.action-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    margin-top:25px;
+
+}
+
+.action-grid button{
+
+    width:100%;
+
+}
+
+/*==========================
+PROFILE BADGES
+==========================*/
+
+.status-good{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:8px 15px;
+
+    border-radius:999px;
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.status-warning{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:8px 15px;
+
+    border-radius:999px;
+
+    background:#fff7ed;
+
+    color:#ea580c;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+.status-danger{
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:8px 15px;
+
+    border-radius:999px;
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+/*==========================
+PATIENT CARD HOVER
+==========================*/
+
+.patient-card{
+
+    transition:.3s;
+
+}
+
+.patient-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 25px 50px rgba(37,99,235,.10);
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:1200px){
+
+.threshold-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.action-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:900px){
+
+.patient-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.patient-summary-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.threshold-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.action-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.patient-card{
+
+    padding:22px;
+
+}
+
+.patient-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    font-size:38px;
+
+}
+
+.patient-basic h2{
+
+    font-size:28px;
+
+}
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 5
+ANALYTICS
+==========================================================*/
+
+/*==========================
+SUMMARY GRID
+==========================*/
+
+.analytics-summary-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+.analytics-summary-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.analytics-summary-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.analytics-summary-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #60a5fa
+    );
+
+}
+
+.analytics-summary-card small{
+
+    display:block;
+
+    color:var(--text-light);
+
+    margin-bottom:12px;
+
+    font-size:14px;
+
+}
+
+.analytics-summary-card h2{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    color:var(--primary);
+
+    margin-bottom:8px;
+
+}
+
+.analytics-summary-card span{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/*==========================
+CHART GRID
+==========================*/
+
+.analytics-chart-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+.analytics-chart-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.analytics-chart-card h3{
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+}
+
+.analytics-chart-card canvas{
+
+    width:100%!important;
+
+    height:340px!important;
+
+}
+
+/*==========================
+INFO GRID
+==========================*/
+
+.analytics-info-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-top:30px;
+
+}
+
+/*==========================
+INFO CARD
+==========================*/
+
+.analytics-info-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.analytics-info-card h3{
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+}
+
+/*==========================
+TABLE
+==========================*/
+
+.analytics-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.analytics-table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.analytics-table tr:last-child td{
+
+    border-bottom:none;
+
+}
+
+.analytics-table td:first-child{
+
+    color:var(--text-light);
+
+}
+
+.analytics-table td:last-child{
+
+    text-align:right;
+
+    font-weight:700;
+
+}
+
+/*==========================
+PROGRESS
+==========================*/
+
+.progress-item{
+
+    margin-bottom:25px;
+
+}
+
+.progress-item span{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+.progress-item progress{
+
+    width:100%;
+
+    height:14px;
+
+    border:none;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+progress::-webkit-progress-bar{
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+}
+
+progress::-webkit-progress-value{
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #60a5fa
+    );
+
+    border-radius:20px;
+
+}
+
+/*==========================
+ANALYTICS BADGES
+==========================*/
+
+.analytics-badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+/*==========================
+CHART HOVER
+==========================*/
+
+.analytics-chart-card{
+
+    transition:.3s;
+
+}
+
+.analytics-chart-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 25px 50px rgba(37,99,235,.10);
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:1200px){
+
+.analytics-summary-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.analytics-chart-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.analytics-info-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.analytics-summary-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.analytics-summary-card{
+
+    padding:22px;
+
+}
+
+.analytics-chart-card{
+
+    padding:20px;
+
+}
+
+.analytics-chart-card canvas{
+
+    height:260px!important;
+
+}
+
+.analytics-info-card{
+
+    padding:20px;
+
+}
+
+.analytics-table td{
+
+    padding:14px;
+
+    font-size:14px;
+
+}
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 6
+AI REVIEW
+==========================================================*/
+
+/*==========================
+TOP GRID
+==========================*/
+
+.ai-top-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+/*==========================
+RISK CARD
+==========================*/
+
+.ai-risk-card{
+
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+
+    color:#fff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+    text-align:center;
+
+}
+
+.ai-risk-card h3{
+
+    margin-bottom:25px;
+
+}
+
+/*==========================
+RISK CIRCLE
+==========================*/
+
+.risk-circle{
+
+    width:190px;
+
+    height:190px;
+
+    margin:25px auto;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,#ffffff 58%,transparent 60%),
+
+    conic-gradient(
+
+        #10b981 0deg,
+
+        #22c55e 210deg,
+
+        #e5e7eb 210deg
+
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:
+
+    inset 0 0 30px rgba(0,0,0,.08);
+
+}
+
+.risk-circle div{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+/*==========================
+STATUS CARD
+==========================*/
+
+.ai-status-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.ai-status-card h3{
+
+    margin-bottom:25px;
+
+}
+
+.status-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.status-list div{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.status-list div:last-child{
+
+    border-bottom:none;
+
+}
+
+.status-list strong{
+
+    color:#16a34a;
+
+}
+
+/*==========================
+AI MAIN CARD
+==========================*/
+
+.ai-main-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:30px;
+
+}
+
+.ai-main-card h2{
+
+    margin-bottom:25px;
+
+}
+
+.ai-report-box{
+
+    background:#f8fafc;
+
+    border-left:6px solid #2563eb;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    font-size:16px;
+
+    line-height:1.9;
+
+    color:#334155;
+
+}
+
+/*==========================
+PREDICTION GRID
+==========================*/
+
+.prediction-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+.prediction-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.prediction-card h3{
+
+    margin-bottom:25px;
+
+}
+
+.prediction-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.prediction-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.prediction-item strong{
+
+    color:#16a34a;
+
+}
+
+/*==========================
+RECOMMENDATIONS
+==========================*/
+
+.prediction-card ul{
+
+    padding-left:20px;
+
+}
+
+.prediction-card li{
+
+    margin-bottom:15px;
+
+    line-height:1.7;
+
+    color:#475569;
+
+}
+
+/*==========================
+SUMMARY
+==========================*/
+
+.summary-card{
+
+    background:linear-gradient(135deg,#111827,#1e293b);
+
+    color:#fff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:30px;
+
+}
+
+.summary-card h2{
+
+    margin-bottom:18px;
+
+}
+
+.summary-card p{
+
+    line-height:1.9;
+
+    opacity:.9;
+
+}
+
+/*==========================
+AI BUTTONS
+==========================*/
+
+.aiSection .action-grid,
+#aiSection .action-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+/*==========================
+HOVER
+==========================*/
+
+.ai-main-card,
+.prediction-card,
+.ai-status-card{
+
+    transition:.3s;
+
+}
+
+.ai-main-card:hover,
+.prediction-card:hover,
+.ai-status-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:1200px){
+
+.ai-top-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.prediction-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.risk-circle{
+
+    width:150px;
+
+    height:150px;
+
+}
+
+.risk-circle div{
+
+    font-size:32px;
+
+}
+
+#aiSection .action-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.ai-risk-card,
+.ai-status-card,
+.ai-main-card,
+.prediction-card,
+.summary-card{
+
+    padding:22px;
+
+}
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 7
+DEVICE + EMERGENCY
+==========================================================*/
+
+/*==========================
+DEVICE PAGE GRID
+==========================*/
+
+.device-page-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+/*==========================
+DEVICE INFO CARD
+==========================*/
+
+.device-info-card,
+.device-status-card,
+.device-control-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.device-info-card h2,
+.device-status-card h2,
+.device-control-card h2{
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+}
+
+/*==========================
+DEVICE INFO LIST
+==========================*/
+
+.device-info-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.device-info-list div{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.device-info-list div:last-child{
+
+    border-bottom:none;
+
+}
+
+.device-info-list strong{
+
+    color:var(--primary);
+
+}
+
+/*==========================
+STATUS GRID
+==========================*/
+
+.status-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.status-box{
+
+    background:#f8fafc;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    text-align:center;
+
+}
+
+.status-box span{
+
+    display:block;
+
+    color:var(--text-light);
+
+    margin-bottom:12px;
+
+}
+
+.status-box h2{
+
+    color:var(--primary);
+
+    font-size:30px;
+
+}
+
+/*==========================
+DEVICE CONTROL
+==========================*/
+
+.device-control-card{
+
+    margin-top:30px;
+
+}
+
+.device-control-card .action-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+}
+
+/*==========================
+EMERGENCY ALERT
+==========================*/
+
+.emergency-alert-card{
+
+    background:linear-gradient(
+        135deg,
+        #dc2626,
+        #ef4444
+    );
+
+    color:#fff;
+
+    border-radius:24px;
+
+    padding:35px;
+
+    margin-bottom:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.emergency-alert-card h2{
+
+    font-size:32px;
+
+    margin-bottom:15px;
+
+}
+
+.emergency-alert-card p{
+
+    line-height:1.8;
+
+    opacity:.95;
+
+}
+
+/*==========================
+EMERGENCY GRID
+==========================*/
+
+.emergency-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-bottom:30px;
+
+}
+
+/*==========================
+EMERGENCY CARD
+==========================*/
+
+.emergency-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:.3s;
+
+}
+
+.emergency-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.emergency-card h3{
+
+    margin-bottom:18px;
+
+    color:var(--text-light);
+
+}
+
+.emergency-card h1{
+
+    font-size:48px;
+
+    color:var(--danger);
+
+    margin-bottom:20px;
+
+}
+
+.emergency-card h2{
+
+    font-size:28px;
+
+    color:var(--primary);
+
+    margin-bottom:20px;
+
+}
+
+.emergency-card button{
+
+    width:100%;
+
+}
+
+/*==========================
+EMERGENCY MODAL
+==========================*/
+
+.emergency-modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(0,0,0,.7);
+
+    backdrop-filter:blur(8px);
+
+    z-index:99999;
+
+}
+
+.emergency-box{
+
+    width:92%;
+
+    max-width:650px;
+
+    background:#fff;
+
+    border-radius:30px;
+
+    padding:40px;
+
+    text-align:center;
+
+    animation:popup .35s ease;
+
+}
+
+.emergency-icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+.emergency-box h1{
+
+    color:#dc2626;
+
+    margin-bottom:15px;
+
+}
+
+.emergency-box p{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+    margin-bottom:30px;
+
+}
+
+.emergency-info{
+
+    background:#fef2f2;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    margin-bottom:30px;
+
+}
+
+.emergency-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:1px solid rgba(0,0,0,.08);
+
+}
+
+.emergency-item:last-child{
+
+    border-bottom:none;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.85);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:1200px){
+
+.device-page-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.status-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.device-control-card .action-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+
+.emergency-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.device-info-card,
+.device-status-card,
+.device-control-card,
+.emergency-alert-card,
+.emergency-card{
+
+    padding:22px;
+
+}
+
+.device-control-card .action-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.emergency-box{
+
+    padding:25px;
+
+}
+
+.emergency-box h1{
+
+    font-size:28px;
+
+}
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 8
+SETTINGS + FOOTER + UTILITIES
+==========================================================*/
+
+/*==========================
+SETTINGS CARD
+==========================*/
+
+.settings-card{
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:30px;
+
+}
+
+.settings-card h2{
+
+    font-size:24px;
+
+    margin-bottom:25px;
+
+}
+
+/*==========================
+SETTINGS LIST
+==========================*/
+
+.settings-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+.setting-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.setting-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.setting-row h4{
+
+    margin-bottom:5px;
+
+}
+
+.setting-row p{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/*==========================
+SWITCH
+==========================*/
+
+.switch{
+
+    position:relative;
+
+    width:56px;
+
+    height:30px;
+
+    display:inline-block;
+
+}
+
+.switch input{
+
+    display:none;
+
+}
+
+.slider{
+
+    position:absolute;
+
+    inset:0;
+
+    background:#cbd5e1;
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.slider::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:24px;
+
+    height:24px;
+
+    left:3px;
+
+    top:3px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    transition:.3s;
+
+}
+
+.switch input:checked + .slider{
+
+    background:var(--primary);
+
+}
+
+.switch input:checked + .slider::before{
+
+    transform:translateX(26px);
+
+}
+
+/*==========================
+FOOTER
+==========================*/
+
+.dashboard-footer{
+
+    margin-top:50px;
+
+    padding:30px;
+
+    border-top:1px solid var(--border);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:var(--text-light);
+
+}
+
+.dashboard-footer h3{
+
+    color:var(--text);
+
+    margin-bottom:6px;
+
+}
+
+/*==========================
+LOADING
+==========================*/
+
+.loading-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(255,255,255,.92);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+.loader-card{
+
+    text-align:center;
+
+}
+
+.loader{
+
+    width:70px;
+
+    height:70px;
+
+    border:7px solid #e5e7eb;
+
+    border-top-color:var(--primary);
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto auto 20px;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/*==========================
+TOAST
+==========================*/
+
+#toastContainer{
+
+    position:fixed;
+
+    top:25px;
+
+    right:25px;
+
+    z-index:99999;
+
+}
+
+.toast{
+
+    background:#111827;
+
+    color:#fff;
+
+    padding:16px 22px;
+
+    border-radius:14px;
+
+    margin-bottom:15px;
+
+    animation:toastIn .3s ease;
+
+    box-shadow:var(--shadow);
+
+}
+
+@keyframes toastIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/*==========================
+UTILITY
+==========================*/
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.mt-20{
+
+    margin-top:20px;
+
+}
+
+.mt-30{
+
+    margin-top:30px;
+
+}
+
+.mb-30{
+
+    margin-bottom:30px;
+
+}
+
+.hidden{
+
+    display:none!important;
+
+}
+
+.flex{
+
+    display:flex;
+
+}
+
+.grid{
+
+    display:grid;
+
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:900px){
+
+.dashboard-footer{
+
+    flex-direction:column;
+
+    gap:15px;
+
+    text-align:center;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.settings-card{
+
+    padding:22px;
+
+}
+
+.setting-row{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+.switch{
+
+    margin-top:5px;
+
+}
+
+.loader{
+
+    width:55px;
+
+    height:55px;
+
+}
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 9
+PREMIUM EFFECTS + DARK MODE
+==========================================================*/
+
+/*==========================
+GLASS EFFECT
+==========================*/
+
+.glass{
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+}
+
+/*==========================
+PREMIUM CARD EFFECT
+==========================*/
+
+.metric-card,
+.patient-card,
+.analytics-summary-card,
+.analytics-chart-card,
+.analytics-info-card,
+.monitor-card,
+.device-card,
+.device-info-card,
+.device-status-card,
+.device-control-card,
+.settings-card,
+.ai-main-card,
+.ai-status-card,
+.ai-risk-card,
+.prediction-card,
+.summary-card,
+.emergency-card{
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.metric-card:hover,
+.patient-card:hover,
+.analytics-summary-card:hover,
+.analytics-chart-card:hover,
+.analytics-info-card:hover,
+.monitor-card:hover,
+.device-card:hover,
+.device-info-card:hover,
+.device-status-card:hover,
+.device-control-card:hover,
+.settings-card:hover,
+.ai-main-card:hover,
+.ai-status-card:hover,
+.ai-risk-card:hover,
+.prediction-card:hover,
+.summary-card:hover,
+.emergency-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.12);
+
+}
+
+/*==========================
+BUTTON EFFECT
+==========================*/
+
+.primary-btn,
+.outline-btn,
+.danger-btn{
+
+    transition:.25s ease;
+
+}
+
+.primary-btn:hover,
+.outline-btn:hover,
+.danger-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.primary-btn:active,
+.outline-btn:active,
+.danger-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/*==========================
+FADE ANIMATION
+==========================*/
+
+.fade-up{
+
+    animation:fadeUp .5s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==========================
+SMOOTH SCROLLBAR
+==========================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#eef2f7;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#b8c4d6;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+/*==========================
+FOCUS
+==========================*/
+
+input:focus,
+button:focus,
+select:focus,
+textarea:focus{
+
+    outline:none;
+
+}
+
+/*==========================
+DARK MODE
+==========================*/
+
+body.dark{
+
+    --background:#0f172a;
+
+    --card:#1e293b;
+
+    --text:#f8fafc;
+
+    --text-light:#cbd5e1;
+
+    --border:#334155;
+
+    --sidebar:#020617;
+
+}
+
+body.dark .topbar{
+
+    background:#1e293b;
+
+    border-color:#334155;
+
+}
+
+body.dark .search-box{
+
+    background:#0f172a;
+
+    color:#fff;
+
+}
+
+body.dark .analytics-table td{
+
+    border-color:#334155;
+
+}
+
+body.dark .info-row{
+
+    border-color:#334155;
+
+}
+
+body.dark .setting-row{
+
+    border-color:#334155;
+
+}
+
+body.dark .prediction-item{
+
+    border-color:#334155;
+
+}
+
+body.dark .device-info-list div{
+
+    border-color:#334155;
+
+}
+
+body.dark .status-box{
+
+    background:#0f172a;
+
+}
+
+body.dark .device-item{
+
+    background:#0f172a;
+
+}
+
+body.dark .threshold-box{
+
+    background:#0f172a;
+
+}
+
+body.dark .ai-report-box{
+
+    background:#0f172a;
+
+    color:#e2e8f0;
+
+}
+
+/*==========================
+IMAGE
+==========================*/
+
+img{
+
+    max-width:100%;
+
+    display:block;
+
+}
+
+/*==========================
+TABLE
+==========================*/
+
+table{
+
+    width:100%;
+
+}
+
+/*==========================
+PRINT
+==========================*/
+
+@media print{
+
+.sidebar{
+
+    display:none;
+
+}
+
+.topbar{
+
+    display:none;
+
+}
+
+.dashboard-content{
+
+    padding:0;
+
+}
+
+button{
+
+    display:none;
+
+}
+
+body{
+
+    background:white;
+
+}
+
+}
+
+/*==========================
+EXTRA RESPONSIVE
+==========================*/
+
+@media(max-width:600px){
+
+.topbar{
+
+    padding:15px;
+
+}
+
+.brand h2{
+
+    font-size:18px;
+
+}
+
+.search-box{
+
+    width:100%;
+
+}
+
+.profile-chip{
+
+    display:none;
+
+}
+
+.dashboard-content{
+
+    padding:18px;
+
+}
+
+}
+
+/*==========================
+LOADING STATE
+==========================*/
+
+.loading{
+
+    pointer-events:none;
+
+    opacity:.6;
+
+}
+
+/*==========================
+DISABLED BUTTON
+==========================*/
+
+button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/*==========================
+SELECTION
+==========================*/
+
+::selection{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+/* ==========================================================
+HEALTH SENTINEL PRO
+ENTERPRISE DASHBOARD CSS
+PART 10
+FINAL POLISH
+==========================================================*/
+
+/*==========================
+COLLAPSIBLE SIDEBAR
+==========================*/
+
+.sidebar{
+
+    transition:width .35s ease;
+
+}
+
+.sidebar.collapsed{
+
+    width:90px;
+
+}
+
+.sidebar.collapsed .sidebar-title{
+
+    display:none;
+
+}
+
+.sidebar.collapsed a{
+
+    justify-content:center;
+
+    font-size:0;
+
+}
+
+.sidebar.collapsed a::first-letter{
+
+    font-size:22px;
+
+}
+
+.sidebar.collapsed .logout-btn{
+
+    font-size:0;
+
+    padding:16px;
+
+}
+
+.sidebar.collapsed .logout-btn::before{
+
+    content:"⎋";
+
+    font-size:20px;
+
+}
+
+/*==========================
+NOTIFICATION BADGE
+==========================*/
+
+.notification-badge{
+
+    position:absolute;
+
+    top:-5px;
+
+    right:-5px;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    font-size:11px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:700;
+
+}
+
+/*==========================
+STATUS DOTS
+==========================*/
+
+.status-online{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    display:inline-block;
+
+}
+
+.status-warning-dot{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#f59e0b;
+
+    display:inline-block;
+
+}
+
+.status-offline{
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    display:inline-block;
+
+}
+
+/*==========================
+SKELETON LOADING
+==========================*/
+
+.skeleton{
+
+    background:linear-gradient(
+        90deg,
+        #f1f5f9 25%,
+        #e2e8f0 37%,
+        #f1f5f9 63%
+    );
+
+    background-size:400% 100%;
+
+    animation:skeletonLoading 1.4s ease infinite;
+
+    border-radius:12px;
+
+}
+
+@keyframes skeletonLoading{
+
+    0%{
+
+        background-position:100% 50%;
+
+    }
+
+    100%{
+
+        background-position:0 50%;
+
+    }
+
+}
+
+/*==========================
+EMPTY STATE
+==========================*/
+
+.empty-state{
+
+    text-align:center;
+
+    padding:60px 30px;
+
+    color:var(--text-light);
+
+}
+
+.empty-state i{
+
+    font-size:70px;
+
+    margin-bottom:20px;
+
+    color:#94a3b8;
+
+}
+
+.empty-state h2{
+
+    margin-bottom:15px;
+
+}
+
+.empty-state p{
+
+    max-width:500px;
+
+    margin:auto;
+
+    line-height:1.8;
+
+}
+
+/*==========================
+CARD TITLE
+==========================*/
+
+.card-title{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.card-title h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+/*==========================
+DIVIDERS
+==========================*/
+
+.divider{
+
+    width:100%;
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:25px 0;
+
+}
+
+/*==========================
+SUCCESS ALERT
+==========================*/
+
+.alert-success{
+
+    background:#ecfdf5;
+
+    border-left:5px solid #22c55e;
+
+    color:#166534;
+
+    padding:18px;
+
+    border-radius:14px;
+
+}
+
+.alert-warning{
+
+    background:#fff7ed;
+
+    border-left:5px solid #f59e0b;
+
+    color:#92400e;
+
+    padding:18px;
+
+    border-radius:14px;
+
+}
+
+.alert-danger{
+
+    background:#fef2f2;
+
+    border-left:5px solid #ef4444;
+
+    color:#991b1b;
+
+    padding:18px;
+
+    border-radius:14px;
+
+}
+
+/*==========================
+FORM ELEMENTS
+==========================*/
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:14px 16px;
+
+    font-size:15px;
+
+    transition:.25s;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+
+}
+
+/*==========================
+CUSTOM CHECKBOX
+==========================*/
+
+input[type="checkbox"]{
+
+    accent-color:var(--primary);
+
+}
+
+/*==========================
+CARD ANIMATION
+==========================*/
+
+.dashboard-section{
+
+    animation:sectionFade .35s ease;
+
+}
+
+@keyframes sectionFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==========================
+FINAL RESPONSIVE
+==========================*/
+
+@media(max-width:480px){
+
+.section-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+}
+
+.section-header h1{
+
+    font-size:28px;
+
+}
+
+.primary-btn,
+.outline-btn,
+.danger-btn{
+
+    width:100%;
+
+}
+
+}
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+/*==========================
+END OF FILE
+==========================*/
