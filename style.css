@@ -39,17 +39,21 @@ LOGIN SCREEN
 
 #loginScreen{
 
-    width:100vw;
-    height:100vh;
+    width:100%;
+
+    min-height:100vh;
 
     display:grid;
+
     grid-template-columns:55% 45%;
 
     background:#f8fafc;
 
-    overflow:hidden;
-}
+    overflow-y:auto;
 
+    overflow-x:hidden;
+
+}
 /* =========================
 LEFT PANEL
 ========================= */
@@ -8329,3 +8333,36 @@ FINAL RESPONSIVE
 /*==========================
 END OF FILE
 ==========================*/
+html,
+body{
+
+    width:100%;
+
+    min-height:100%;
+
+    margin:0;
+
+    overflow-x:hidden;
+
+    overflow-y:auto;
+
+}
+
+.container{
+
+    min-height:100vh;
+
+    height:auto;
+
+}
+#onboardingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+}
