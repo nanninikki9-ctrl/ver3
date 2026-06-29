@@ -453,6 +453,23 @@ PART 1
 =========================================================== -->
 
 <div id="dashboardPage" style="display:none;">
+    <div class="mobile-header">
+
+    <button class="mobile-menu-btn"
+            onclick="toggleSidebar()">
+        ☰
+    </button>
+
+    <h2>Health Sentinel</h2>
+
+    <div style="width:42px;"></div>
+
+</div>
+
+<div class="mobile-overlay"
+     id="mobileOverlay"
+     onclick="toggleSidebar()">
+</div>
 
     <!-- =========================
     TOP NAVBAR
@@ -2913,6 +2930,36 @@ TOAST NOTIFICATION
     id="toastContainer">
 
 </div>
+  
+
+<nav class="mobile-bottom-nav">
+
+    <a class="active" onclick="showSection('dashboardSection')">
+        <i>🏠</i>
+        <span>Home</span>
+    </a>
+
+    <a onclick="showSection('monitorSection')">
+        <i>❤️</i>
+        <span>Monitor</span>
+    </a>
+
+    <a onclick="showSection('analyticsSection')">
+        <i>📈</i>
+        <span>Reports</span>
+    </a>
+
+    <a onclick="showSection('aiSection')">
+        <i>🤖</i>
+        <span>AI</span>
+    </a>
+
+    <a onclick="showSection('settingsSection')">
+        <i>⚙️</i>
+        <span>Settings</span>
+    </a>
+
+</nav>
 
 <!-- =====================================================
 SCRIPTS
