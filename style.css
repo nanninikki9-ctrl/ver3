@@ -12752,3 +12752,64 @@ body{
 }
 
 }
+@media (max-width:768px){
+
+.login-container,
+.auth-container,
+.login-card{
+
+    width:95% !important;
+    max-width:420px !important;
+    margin:auto !important;
+
+    display:block !important;
+
+}
+
+.login-left,
+.login-image,
+.auth-image{
+
+    display:none !important;
+
+}
+
+.login-right,
+.auth-right{
+
+    width:100% !important;
+
+}
+
+.login-form{
+
+    width:100% !important;
+
+}
+
+.login-form input{
+
+    width:100% !important;
+
+    box-sizing:border-box;
+
+}
+
+.login-form button{
+
+    width:100% !important;
+
+}
+
+}
+.bottom-nav{
+
+    display:none;
+
+}
+
+.dashboardPage .bottom-nav{
+
+    display:flex;
+
+}
