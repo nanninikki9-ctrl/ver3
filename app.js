@@ -17,8 +17,10 @@ import {
     addDoc,
     getDocs,
     query,
+    limit,
     orderBy,
-    serverTimestamp
+    serverTimestamp,
+    deleteDoc
 }
 from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 
@@ -31,6 +33,10 @@ GLOBAL VARIABLES
 let bpChart = null;
 let glucoseChart = null;
 let spo2Chart = null;
+
+let bpChartAnalytics = null;
+let glucoseChartAnalytics = null;
+let spo2ChartAnalytics = null;
 
 let readings = [];
 
@@ -199,13 +205,17 @@ window.login = async () => {
             )
         );
 
-  
 if (profileDoc.exists()) {
 
     showPage("dashboardPage");
 
+    await loadProfile();
+
+    await initializeDashboard();
 
     return;
+
+
 
 }
 
@@ -480,7 +490,530 @@ if(false){
 
     }
 );
+/*=========================================
+SAVE MANUAL READING
+=========================================*/
 
+window.saveManualReading = async function () {
+
+    try {
+
+        const user = auth.currentUser;
+
+        if (!user) {
+
+            alert("Please login first.");
+
+            return;
+
+        }
+
+        const systolic =
+            Number(el("manualSystolic").value);
+
+        const diastolic =
+            Number(el("manualDiastolic").value);
+
+        const sugar =
+            Number(el("manualSugar").value);
+
+        const spo2 =
+            Number(el("manualSpo2").value);
+
+        const heartRate =
+            Number(el("manualHeartRate").value);
+
+        const temperature =
+            Number(el("manualTemp").value);
+
+        const notes =
+            el("manualNotes").value.trim();
+
+        if (
+
+            !systolic ||
+
+            !diastolic ||
+
+            !sugar ||
+
+            !spo2
+
+        ) {
+
+            alert("Please complete all required fields.");
+
+            return;
+
+        }
+
+        let risk = "Low";
+
+        if (
+
+            systolic >= 140 ||
+
+            sugar >= 180 ||
+
+            spo2 < 92
+
+        ) {
+
+            risk = "High";
+
+        }
+
+        else if (
+
+            systolic >= 130 ||
+
+            sugar >= 140 ||
+
+            spo2 < 95
+
+        ) {
+
+            risk = "Medium";
+
+        }
+
+        await addDoc(
+
+            collection(
+
+                db,
+
+                "users",
+
+                user.uid,
+
+                "readings"
+
+            ),
+
+            {
+
+                bp:
+                    systolic +
+                    "/" +
+                    diastolic,
+
+                systolic,
+
+                diastolic,
+
+                sugar,
+
+                spo2,
+
+                heartRate,
+
+                temperature,
+
+                notes,
+
+                risk,
+
+                timestamp:
+                    serverTimestamp()
+
+            }
+
+        );
+
+      alert("Reading saved successfully.");
+
+clearManualEntry();
+
+await loadReadings();
+
+await loadRecentReadings();
+
+loadVitals();
+
+initializeCharts();
+
+updateAnalytics();
+
+analyzeHealth();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+};
+/*=========================================
+CLEAR FORM
+=========================================*/
+
+function clearManualEntry() {
+
+    el("manualSystolic").value = "";
+
+    el("manualDiastolic").value = "";
+
+    el("manualSugar").value = "";
+
+    el("manualSpo2").value = "";
+
+    el("manualHeartRate").value = "";
+
+    el("manualTemp").value = "";
+
+    el("manualNotes").value = "";
+
+}
+/*=========================================
+LOAD RECENT READINGS
+=========================================*/
+
+window.loadRecentReadings = async function () {
+
+    try {
+
+        const user = auth.currentUser;
+
+        if (!user) return;
+
+        const tbody =
+            el("recentReadingsTable");
+
+        if (!tbody) return;
+
+        tbody.innerHTML = "";
+
+        const q = query(
+
+            collection(
+                db,
+                "users",
+                user.uid,
+                "readings"
+            ),
+orderBy(
+    "timestamp",
+    "desc"
+),
+
+limit(5)
+
+        );
+
+        const snapshot =
+            await getDocs(q);
+
+        if (snapshot.empty) {
+
+            tbody.innerHTML = `
+
+                <tr>
+
+                    <td colspan="8"
+                        class="empty-history">
+
+                        No readings available.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+        snapshot.forEach(docItem => {
+
+            const data =
+                docItem.data();
+
+            const date =
+                data.timestamp
+                ? data.timestamp
+                      .toDate()
+                      .toLocaleDateString()
+                : "--";
+
+            const time =
+                data.timestamp
+                ? data.timestamp
+                      .toDate()
+                      .toLocaleTimeString([],{
+                          hour:"2-digit",
+                          minute:"2-digit"
+                      })
+                : "--";
+
+            let riskClass = "risk-low";
+
+            if(data.risk==="Medium")
+                riskClass="risk-medium";
+
+            if(data.risk==="High")
+                riskClass="risk-high";
+
+            tbody.innerHTML += `
+
+            <tr>
+
+                <td>${date}</td>
+
+                <td>${time}</td>
+
+                <td>${data.bp}</td>
+
+                <td>${data.sugar}</td>
+
+                <td>${data.spo2}%</td>
+
+                <td>${data.heartRate || "--"}</td>
+
+                <td>
+
+                    <span class="${riskClass}">
+
+                        ${data.risk}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <div class="history-actions">
+
+                        <button
+
+                            class="icon-btn view-btn"
+
+                            onclick="viewReading('${docItem.id}')">
+
+                            👁
+
+                        </button>
+
+                        <button
+
+                            class="icon-btn edit-btn"
+
+                            onclick="editReading('${docItem.id}')">
+
+                            ✏
+
+                        </button>
+
+                        <button
+
+                            class="icon-btn delete-btn"
+
+                            onclick="deleteReading('${docItem.id}')">
+
+                            🗑
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+};
+/*=========================================
+VIEW READING
+=========================================*/
+
+window.viewReading = async function(readingId){
+
+    const user = auth.currentUser;
+
+    if(!user) return;
+
+    const snap = await getDoc(
+
+        doc(
+
+            db,
+
+            "users",
+
+            user.uid,
+
+            "readings",
+
+            readingId
+
+        )
+
+    );
+
+    if(!snap.exists())
+
+        return;
+
+    const r = snap.data();
+
+    el("modalBP").textContent = r.bp;
+
+    el("modalSugar").textContent = r.sugar + " mg/dL";
+
+    el("modalSpo2").textContent = r.spo2 + "%";
+
+    el("modalHeartRate").textContent =
+        (r.heartRate || "--") + " BPM";
+
+    el("modalTemp").textContent =
+        (r.temperature || "--") + " °C";
+
+    el("modalRisk").textContent = r.risk;
+
+    el("modalNotes").textContent =
+        r.notes || "No Notes";
+
+    el("readingModal").style.display =
+        "flex";
+
+};
+window.closeReadingModal = function(){
+
+    el("readingModal").style.display="none";
+
+};
+
+/*=========================================
+DELETE READING
+=========================================*/
+
+window.deleteReading = async function(readingId){
+
+    try{
+
+        if(!confirm("Delete this reading?"))
+
+            return;
+
+        const user = auth.currentUser;
+
+        await deleteDoc(
+
+            doc(
+
+                db,
+
+                "users",
+
+                user.uid,
+
+                "readings",
+
+                readingId
+
+            )
+
+        );
+
+        loadRecentReadings();
+
+        loadReadings();
+
+    }
+
+    catch(err){
+
+        console.error(err);
+
+        alert(err.message);
+
+    }
+
+};
+
+/*=========================================
+EDIT READING
+=========================================*/
+
+window.editReading = async function(readingId){
+
+    try{
+
+        const user = auth.currentUser;
+
+        const ref = doc(
+
+            db,
+
+            "users",
+
+            user.uid,
+
+            "readings",
+
+            readingId
+
+        );
+
+        const snap = await getDoc(ref);
+
+        if(!snap.exists())
+
+            return;
+
+        const r = snap.data();
+
+        const bp = r.bp.split("/");
+
+        el("manualSystolic").value = bp[0];
+
+        el("manualDiastolic").value = bp[1];
+
+        el("manualSugar").value = r.sugar;
+
+        el("manualSpo2").value = r.spo2;
+
+        el("manualHeartRate").value = r.heartRate || "";
+
+        el("manualTemp").value = r.temperature || "";
+
+        el("manualNotes").value = r.notes || "";
+
+        await deleteDoc(ref);
+
+        window.scrollTo({
+
+            top:0,
+
+            behavior:"smooth"
+
+        });
+
+    }
+
+    catch(err){
+
+        console.error(err);
+
+    }
+
+};
 /* =========================================
 UTILITY
 ========================================= */
@@ -653,33 +1186,23 @@ async function loadProfile() {
 /* =========================================
 INITIALIZE DASHBOARD
 ========================================= */
-
 async function initializeDashboard() {
 
     await loadReadings();
 
-    if (
-        readings.length === 0
-    ) {
+    await loadRecentReadings();
 
-        if (el("bpValue"))
-            el("bpValue").textContent =
-                "--/--";
+    if (readings.length === 0) {
 
-        if (el("sugarValue"))
-            el("sugarValue").textContent =
-                "--";
-
-        if (el("spo2Value"))
-            el("spo2Value").textContent =
-                "--%";
+        updateAll("bpValue", "--/--");
+        updateAll("sugarValue", "--");
+        updateAll("spo2Value", "--%");
 
         return;
+
     }
 
     loadVitals();
-
-    loadHistoryTable();
 
     initializeCharts();
 
@@ -688,36 +1211,45 @@ async function initializeDashboard() {
     updateAnalytics();
 
 }
-
 /* =========================================
 LOAD VITALS
 ========================================= */
-
 function loadVitals() {
 
-    if (
-        readings.length === 0
-    ) return;
+    if (readings.length === 0)
+        return;
 
     const latest =
-        readings[
-            readings.length - 1
-        ];
+        readings[readings.length-1];
 
-    if (el("bpValue"))
-        el("bpValue").textContent =
-            latest.bp;
+    updateAll(
+        "bpValue",
+        latest.bp
+    );
 
-    if (el("sugarValue"))
-        el("sugarValue").textContent =
-            latest.sugar;
+    updateAll(
+        "sugarValue",
+        latest.sugar
+    );
 
-    if (el("spo2Value"))
-        el("spo2Value").textContent =
-            latest.spo2 + "%";
+    updateAll(
+        "spo2Value",
+        latest.spo2 + "%"
+    );
+
+    if(el("liveBPValue"))
+        el("liveBPValue").textContent =
+        latest.bp;
+
+    if(el("liveSugarValue"))
+        el("liveSugarValue").textContent =
+        latest.sugar;
+
+    if(el("liveSpo2Value"))
+        el("liveSpo2Value").textContent =
+        latest.spo2 + "%";
 
 }
-
 /* =========================================
 SAVE READING
 ========================================= */
@@ -823,50 +1355,56 @@ document.addEventListener(
 /* =========================================
 LOAD READINGS
 ========================================= */
-
 async function loadReadings() {
 
     try {
 
-        const q =
-            query(
+        if (!auth.currentUser) {
 
-                collection(
-                    db,
-                    "users",
-                    auth.currentUser.uid,
-                    "readings"
-                ),
+            console.log("No user logged in");
 
-                orderBy(
-                    "createdAt",
-                    "asc"
-                )
+            return;
 
-            );
+        }
 
-        const snapshot =
-            await getDocs(q);
+        console.log("UID:", auth.currentUser.uid);
+
+        const q = query(
+
+            collection(
+                db,
+                "users",
+                auth.currentUser.uid,
+                "readings"
+            ),
+
+            orderBy("timestamp", "asc")
+
+        );
+
+        const snapshot = await getDocs(q);
+
+        console.log("Documents Found:", snapshot.size);
 
         readings = [];
 
-        snapshot.forEach(
-            (docSnap) => {
+        snapshot.forEach((docSnap) => {
 
-                readings.push(
-                    docSnap.data()
-                );
+            const data = docSnap.data();
 
-            }
-        );
+            console.log("Reading:", data);
+
+            readings.push(data);
+
+        });
+
+        console.log("Total Readings Loaded:", readings.length);
 
     }
+
     catch (error) {
 
-        console.error(
-            "Readings Error:",
-            error
-        );
+        console.error("loadReadings Error:", error);
 
     }
 
@@ -879,39 +1417,84 @@ function updateAnalytics() {
 
     if (readings.length === 0) return;
 
+    const sugars = readings.map(r => Number(r.sugar));
+    const spo2s = readings.map(r => Number(r.spo2));
+    const systolics = readings.map(r => Number(r.systolic));
+
+    const avgBP =
+        Math.round(
+            systolics.reduce((a,b)=>a+b,0) /
+            systolics.length
+        );
+
     const avgSugar =
         Math.round(
-            readings.reduce(
-                (a, b) => a + Number(b.sugar),
-                0
-            ) / readings.length
+            sugars.reduce((a,b)=>a+b,0) /
+            sugars.length
         );
 
     const avgSpo2 =
         Math.round(
-            readings.reduce(
-                (a, b) => a + Number(b.spo2),
-                0
-            ) / readings.length
+            spo2s.reduce((a,b)=>a+b,0) /
+            spo2s.length
         );
 
-    const avgBP =
-        readings[
-            readings.length - 1
-        ].bp;
+    el("avgBP").textContent =
+        avgBP + " mmHg";
 
-    if (el("avgBP"))
-        el("avgBP").textContent =
-            avgBP;
+    el("avgSugar").textContent =
+        avgSugar;
 
-    if (el("avgSugar"))
-        el("avgSugar").textContent =
-            avgSugar;
+    el("avgSpo2").textContent =
+        avgSpo2 + "%";
 
-    if (el("avgSpo2"))
-        el("avgSpo2").textContent =
-            avgSpo2 + "%";
+    el("totalReadings").textContent =
+        readings.length;
 
+    const normal =
+        readings.filter(r=>r.risk==="Low").length;
+
+    const abnormal =
+        readings.length-normal;
+
+    el("normalReadings").textContent =
+        normal;
+
+    el("abnormalReadings").textContent =
+        abnormal;
+
+    el("highestBP").textContent =
+        Math.max(...systolics);
+
+    el("lowestBP").textContent =
+        Math.min(...systolics);
+
+    el("highestSugar").textContent =
+        Math.max(...sugars);
+
+    el("lowestSugar").textContent =
+        Math.min(...sugars);
+
+    el("lowestSpo2").textContent =
+        Math.min(...spo2s) + "%";
+
+    el("bpProgress").value =
+        Math.min(avgBP/140*100,100);
+
+    el("sugarProgress").value =
+        Math.min(avgSugar/180*100,100);
+
+    el("spo2Progress").value =
+        avgSpo2;
+
+    let risk = 0;
+
+    if(avgBP>140) risk+=35;
+    if(avgSugar>180) risk+=35;
+    if(avgSpo2<92) risk+=30;
+
+    el("riskScoreAnalytics").textContent =
+        risk + "%";
 }
 
 /* =========================================
@@ -925,10 +1508,13 @@ function initializeCharts() {
         typeof Chart === "undefined"
     ) return;
 
-    const labels =
-        readings.map(
-            r => r.date
-        );
+   const labels = readings.map(r =>
+
+    r.timestamp
+        ? r.timestamp.toDate().toLocaleDateString()
+        : "--"
+
+);
 
     const sugarData =
         readings.map(
@@ -1039,6 +1625,114 @@ const spo2Canvas =
                 }
             }
         );
+        /* ============================
+ANALYTICS CHARTS
+============================ */
+
+const bpAnalyticsCanvas =
+    el("bpChartAnalytics");
+
+if(bpAnalyticsCanvas){
+
+    if(bpChartAnalytics)
+        bpChartAnalytics.destroy();
+
+    bpChartAnalytics =
+    new Chart(bpAnalyticsCanvas,{
+
+        type:"line",
+
+        data:{
+
+            labels,
+
+            datasets:[{
+
+                label:"Blood Pressure",
+
+                data:systolicData,
+
+                borderWidth:3,
+
+                tension:0.4
+
+            }]
+
+        }
+
+    });
+
+}
+
+const sugarAnalyticsCanvas =
+    el("glucoseChartAnalytics");
+
+if(sugarAnalyticsCanvas){
+
+    if(glucoseChartAnalytics)
+        glucoseChartAnalytics.destroy();
+
+    glucoseChartAnalytics =
+    new Chart(sugarAnalyticsCanvas,{
+
+        type:"line",
+
+        data:{
+
+            labels,
+
+            datasets:[{
+
+                label:"Blood Sugar",
+
+                data:sugarData,
+
+                borderWidth:3,
+
+                tension:0.4
+
+            }]
+
+        }
+
+    });
+
+}
+
+const spo2AnalyticsCanvas =
+    el("spo2ChartAnalytics");
+
+if(spo2AnalyticsCanvas){
+
+    if(spo2ChartAnalytics)
+        spo2ChartAnalytics.destroy();
+
+    spo2ChartAnalytics =
+    new Chart(spo2AnalyticsCanvas,{
+
+        type:"line",
+
+        data:{
+
+            labels,
+
+            datasets:[{
+
+                label:"SpO₂",
+
+                data:spo2Data,
+
+                borderWidth:3,
+
+                tension:0.4
+
+            }]
+
+        }
+
+    });
+
+}
 
 }
 
@@ -1470,19 +2164,18 @@ async function refreshDashboard(){
 
     try{
 
-        await loadReadings();
+      
+    await loadReadings();
 
-        loadVitals();
+    await loadRecentReadings();
 
-        loadHistoryTable();
+    loadVitals();
 
-        initializeCharts();
+    initializeCharts();
 
-        analyzeHealth();
+    analyzeHealth();
 
-        updateAnalytics();
-
-        updateLastSync();
+    updateAnalytics();
 
     }
     catch(error){
@@ -2090,3 +2783,377 @@ window.toggleSidebar = function () {
     overlay.classList.toggle("show");
 
 };
+/*=========================================
+FILTER HISTORY
+=========================================*/
+
+window.filterHistory = function(){
+
+    const search =
+        el("historySearch")
+        .value
+        .toLowerCase();
+
+    const risk =
+        el("riskFilter")
+        .value;
+
+    document
+        .querySelectorAll(
+            "#recentReadingsTable tr"
+        )
+        .forEach(row=>{
+
+            const text =
+                row.innerText.toLowerCase();
+
+            const rowRisk =
+                row.innerText;
+
+            const searchMatch =
+                text.includes(search);
+
+            const riskMatch =
+                risk==="All" ||
+                rowRisk.includes(risk);
+
+            row.style.display =
+                searchMatch &&
+                riskMatch
+                ? ""
+                : "none";
+
+        });
+
+};
+
+/*=========================================
+PRINT
+=========================================*/
+
+window.printHistory=function(){
+
+    window.print();
+
+};
+
+/*=========================================
+EXPORT CSV
+=========================================*/
+
+window.exportHistoryCSV=function(){
+
+    let csv=[];
+
+    document
+        .querySelectorAll(
+            ".history-table tr"
+        )
+        .forEach(row=>{
+
+            let cols=[];
+
+            row.querySelectorAll(
+                "th,td"
+            ).forEach(col=>{
+
+                cols.push(
+                    '"' +
+                    col.innerText
+                    .replace(/"/g,'""') +
+                    '"'
+                );
+
+            });
+
+            csv.push(
+                cols.join(",")
+            );
+
+        });
+
+    const blob=
+        new Blob(
+            [csv.join("\n")],
+            {
+                type:"text/csv"
+            }
+        );
+
+    const url=
+        URL.createObjectURL(blob);
+
+    const a=
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download=
+        "Health_Readings.csv";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+};
+/*=========================================
+VIEW FULL HISTORY
+=========================================*/
+
+window.viewAllHistory = async function(){
+
+    el("historyModal").style.display="flex";
+
+    await loadFullHistory();
+
+};
+
+window.closeHistoryModal=function(){
+
+    el("historyModal").style.display="none";
+
+};
+/*=========================================
+LOAD FULL HISTORY
+=========================================*/
+
+async function loadFullHistory(){
+
+    try{
+
+        const user = auth.currentUser;
+
+        if(!user) return;
+
+        const tbody = el("historyModalBody");
+
+        tbody.innerHTML = "";
+
+        const q = query(
+
+            collection(
+                db,
+                "users",
+                user.uid,
+                "readings"
+            ),
+
+            orderBy(
+                "timestamp",
+                "desc"
+            )
+
+        );
+
+        const snapshot = await getDocs(q);
+
+        let total = 0;
+
+        let sugarTotal = 0;
+
+        let spo2Total = 0;
+
+        let systolicTotal = 0;
+
+        snapshot.forEach(docItem=>{
+
+            const r = docItem.data();
+
+            total++;
+
+            sugarTotal += Number(r.sugar || 0);
+
+            spo2Total += Number(r.spo2 || 0);
+
+            systolicTotal += Number(r.systolic || 0);
+            console.log(docSnap.data());
+            console.log("Readings Array:", readings);
+
+            const date = r.timestamp ?
+
+                r.timestamp
+                .toDate()
+                .toLocaleDateString()
+
+                :
+
+                "--";
+
+            const time = r.timestamp ?
+
+                r.timestamp
+                .toDate()
+                .toLocaleTimeString([],{
+
+                    hour:"2-digit",
+
+                    minute:"2-digit"
+
+                })
+
+                :
+
+                "--";
+
+            let badge="risk-low";
+
+            if(r.risk==="Medium")
+                badge="risk-medium";
+
+            if(r.risk==="High")
+                badge="risk-high";
+
+            tbody.innerHTML += `
+
+            <tr>
+
+                <td>${date}</td>
+
+                <td>${time}</td>
+
+                <td>${r.bp}</td>
+
+                <td>${r.sugar}</td>
+
+                <td>${r.spo2}%</td>
+
+                <td>${r.heartRate || "--"}</td>
+
+                <td>
+
+                    <span class="${badge}">
+
+                        ${r.risk}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+            `;
+
+        });
+
+        el("totalReadings").textContent = total;
+
+        el("avgSugar").textContent =
+
+            total ?
+
+            (sugarTotal/total).toFixed(1)
+
+            :
+
+            "--";
+
+        el("avgSpo2").textContent =
+
+            total ?
+
+            (spo2Total/total).toFixed(1)+"%"
+
+            :
+
+            "--";
+
+        el("avgBP").textContent =
+
+            total ?
+
+            Math.round(systolicTotal/total)
+
+            :
+
+            "--";
+
+    }
+
+    catch(err){
+
+        console.error(err);
+
+    }
+
+}
+/*=========================================
+FILTER FULL HISTORY
+=========================================*/
+
+window.filterFullHistory=function(){
+
+    const date=
+
+        el("historyDateFilter").value;
+
+    const risk=
+
+        el("historyRiskFilter").value;
+
+    const search=
+
+        el("historySearchBox")
+
+        .value
+
+        .toLowerCase();
+
+    document
+
+        .querySelectorAll(
+
+            "#historyModalBody tr"
+
+        )
+
+        .forEach(row=>{
+
+            const txt=
+
+                row.innerText
+
+                .toLowerCase();
+
+            const rowDate=
+
+                row.cells[0].innerText;
+
+            const rowRisk=
+
+                row.cells[6].innerText;
+
+            const matchSearch=
+
+                txt.includes(search);
+
+            const matchRisk=
+
+                risk==="All" ||
+
+                rowRisk.includes(risk);
+
+            const matchDate=
+
+                !date ||
+
+                rowDate.includes(date);
+
+            row.style.display=
+
+                matchSearch &&
+
+                matchRisk &&
+
+                matchDate
+
+                ?
+
+                ""
+
+                :
+
+                "none";
+
+        });
+
+}
