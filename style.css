@@ -8366,3 +8366,3634 @@ body{
     overflow-x:hidden;
 
 }
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 1
+Mobile Navigation & Layout
+=========================================================*/
+
+/* Hide mobile controls on desktop */
+
+.mobile-header,
+.mobile-overlay,
+.mobile-menu-btn{
+
+    display:none;
+
+}
+
+/*==================================================
+TABLET & MOBILE
+==================================================*/
+
+@media (max-width:992px){
+
+/*-------------------------
+Dashboard Layout
+-------------------------*/
+
+.dashboard-layout{
+
+    display:block;
+
+}
+
+/*-------------------------
+Mobile Header
+-------------------------*/
+
+.mobile-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    height:65px;
+
+    padding:0 18px;
+
+    background:#ffffff;
+
+    border-bottom:1px solid #e5e7eb;
+
+    z-index:1200;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+
+}
+
+.mobile-header h2{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+}
+
+.mobile-menu-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#eff6ff;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+/*-------------------------
+Hide Desktop Header
+-------------------------*/
+
+.topbar{
+
+    display:none;
+
+}
+
+/*-------------------------
+Sidebar
+-------------------------*/
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:-290px;
+
+    width:280px;
+
+    height:100vh;
+
+    z-index:1300;
+
+    transition:.35s;
+
+    overflow-y:auto;
+
+}
+
+.sidebar.open{
+
+    left:0;
+
+}
+
+/*-------------------------
+Overlay
+-------------------------*/
+
+.mobile-overlay{
+
+    display:block;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s;
+
+    z-index:1250;
+
+}
+
+.mobile-overlay.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+/*-------------------------
+Content
+-------------------------*/
+
+.dashboard-content{
+
+    padding:85px 16px 25px;
+
+}
+
+/*-------------------------
+Section Header
+-------------------------*/
+
+.section-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+.section-header h1{
+
+    font-size:28px;
+
+}
+
+/*-------------------------
+Cards
+-------------------------*/
+
+.card,
+.metric-card,
+.patient-card,
+.analytics-card,
+.device-card,
+.settings-card{
+
+    border-radius:18px;
+
+}
+
+/*-------------------------
+Buttons
+-------------------------*/
+
+.primary-btn,
+.outline-btn,
+.danger-btn{
+
+    width:100%;
+
+}
+
+/*-------------------------
+Inputs
+-------------------------*/
+
+input,
+select,
+textarea{
+
+    font-size:16px;
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.dashboard-content{
+
+    padding:80px 12px 20px;
+
+}
+
+.section-header h1{
+
+    font-size:24px;
+
+}
+
+.brand h2{
+
+    font-size:18px;
+
+}
+
+.metric-card h2{
+
+    font-size:30px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 2
+Dashboard Home
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+WELCOME BANNER
+==========================*/
+
+.welcome-banner{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    padding:24px;
+
+    border-radius:22px;
+
+    margin-bottom:20px;
+
+}
+
+.welcome-banner h1{
+
+    font-size:28px;
+
+    line-height:1.2;
+
+}
+
+.welcome-banner p{
+
+    font-size:14px;
+
+    margin-top:10px;
+
+}
+
+.sync-box{
+
+    width:100%;
+
+    margin-top:20px;
+
+}
+
+/*==========================
+METRIC GRID
+==========================*/
+
+.metrics-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+    margin-bottom:20px;
+
+}
+
+/*==========================
+METRIC CARD
+==========================*/
+
+.metric-card{
+
+    padding:18px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    min-height:145px;
+
+}
+
+.metric-icon{
+
+    width:55px;
+
+    height:55px;
+
+    font-size:24px;
+
+    border-radius:16px;
+
+    margin-bottom:15px;
+
+}
+
+.metric-card h2{
+
+    font-size:28px;
+
+    margin:8px 0;
+
+}
+
+.metric-card span{
+
+    font-size:13px;
+
+}
+
+/*==========================
+MAIN GRID
+==========================*/
+
+.dashboard-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/*==========================
+BIG CARD
+==========================*/
+
+.big-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.big-card h2{
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+}
+
+.big-card canvas{
+
+    height:250px!important;
+
+}
+
+/*==========================
+RIGHT PANEL
+==========================*/
+
+.right-stack{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/*==========================
+SMALL CARD
+==========================*/
+
+.small-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.small-card h3{
+
+    font-size:18px;
+
+}
+
+.small-card p{
+
+    font-size:14px;
+
+}
+
+/*==========================
+DEVICE BUTTONS
+==========================*/
+
+.device-buttons{
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+}
+
+/*==========================
+LIVE STATUS
+==========================*/
+
+.live-status{
+
+    font-size:14px;
+
+}
+
+/*==========================
+QUICK ACTIONS
+==========================*/
+
+.quick-actions{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.quick-actions button{
+
+    width:100%;
+
+    height:55px;
+
+    border-radius:16px;
+
+    font-size:15px;
+
+}
+
+/*==========================
+RISK CARD
+==========================*/
+
+.risk-summary{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    background:#ffffff;
+
+    box-shadow:var(--shadow);
+
+    margin-top:20px;
+
+}
+
+.risk-summary h2{
+
+    font-size:30px;
+
+    color:#ef4444;
+
+}
+
+.risk-summary small{
+
+    color:var(--text-light);
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.metrics-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.metric-card{
+
+    min-height:130px;
+
+}
+
+.metric-card h2{
+
+    font-size:24px;
+
+}
+
+.big-card canvas{
+
+    height:220px!important;
+
+}
+
+.quick-actions{
+
+    grid-template-columns:1fr;
+
+}
+
+.risk-summary{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 3
+Live Monitoring
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+DEVICE GRID
+==========================*/
+
+.device-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:16px;
+
+}
+
+.device-item{
+
+    padding:20px;
+
+    border-radius:18px;
+
+    text-align:left;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.device-item span{
+
+    font-size:14px;
+
+}
+
+.device-item strong{
+
+    font-size:22px;
+
+}
+
+/*==========================
+DEVICE ACTIONS
+==========================*/
+
+.device-actions{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+}
+
+/*==========================
+MONITOR CARD
+==========================*/
+
+.monitor-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.monitor-card canvas{
+
+    width:100%!important;
+
+    height:260px!important;
+
+}
+
+.card-header{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+.card-header h2{
+
+    font-size:20px;
+
+}
+
+.card-header p{
+
+    font-size:14px;
+
+}
+
+/*==========================
+CHART GRID
+==========================*/
+
+.dual-chart-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/*==========================
+LIVE READING GRID
+==========================*/
+
+.live-reading-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+    margin-top:20px;
+
+}
+
+.reading-card{
+
+    padding:18px;
+
+    border-radius:18px;
+
+}
+
+.reading-card h4{
+
+    font-size:13px;
+
+}
+
+.reading-value{
+
+    font-size:30px;
+
+    margin-top:8px;
+
+}
+
+/*==========================
+LIVE STATUS
+==========================*/
+
+.live-status{
+
+    font-size:14px;
+
+}
+
+.live-dot{
+
+    width:10px;
+
+    height:10px;
+
+}
+
+/*==========================
+DEVICE STATUS
+==========================*/
+
+.device-status{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:16px;
+
+    padding:14px;
+
+    border-radius:16px;
+
+    background:#f8fafc;
+
+}
+
+.device-status h4{
+
+    font-size:15px;
+
+}
+
+.device-status span{
+
+    color:#16a34a;
+
+    font-weight:700;
+
+}
+
+/*==========================
+CURRENT READINGS
+==========================*/
+
+.current-reading-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px;
+
+    margin-top:16px;
+
+    border-radius:18px;
+
+    background:#ffffff;
+
+    box-shadow:var(--shadow);
+
+}
+
+.current-reading-card h3{
+
+    font-size:18px;
+
+}
+
+.current-reading-card strong{
+
+    font-size:26px;
+
+    color:var(--primary);
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.live-reading-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.monitor-card{
+
+    padding:16px;
+
+}
+
+.monitor-card canvas{
+
+    height:220px!important;
+
+}
+
+.device-item{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+.current-reading-card{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+.reading-value{
+
+    font-size:26px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 4
+Patient Profile
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+PATIENT SUMMARY
+==========================*/
+
+.patient-summary-card{
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:25px;
+
+    border-radius:22px;
+
+}
+
+.patient-avatar{
+
+    width:90px;
+
+    height:90px;
+
+    font-size:38px;
+
+    margin-bottom:15px;
+
+}
+
+.patient-basic h2{
+
+    font-size:26px;
+
+    margin-bottom:8px;
+
+}
+
+.patient-basic p{
+
+    font-size:14px;
+
+}
+
+/*==========================
+PATIENT GRID
+==========================*/
+
+.patient-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/*==========================
+PATIENT CARD
+==========================*/
+
+.patient-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.patient-card h3{
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+/*==========================
+INFO ROW
+==========================*/
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:14px 0;
+
+}
+
+.info-row span{
+
+    font-size:14px;
+
+}
+
+.info-row strong{
+
+    font-size:15px;
+
+    text-align:right;
+
+}
+
+/*==========================
+THRESHOLD GRID
+==========================*/
+
+.threshold-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.threshold-box{
+
+    padding:18px;
+
+    border-radius:18px;
+
+}
+
+.threshold-box h2{
+
+    font-size:28px;
+
+}
+
+.threshold-box span{
+
+    font-size:13px;
+
+}
+
+/*==========================
+ACTION BUTTONS
+==========================*/
+
+.action-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.action-grid button{
+
+    width:100%;
+
+    height:52px;
+
+    font-size:15px;
+
+    border-radius:14px;
+
+}
+
+/*==========================
+PROFILE STATUS
+==========================*/
+
+.status-good,
+.status-warning,
+.status-danger{
+
+    width:100%;
+
+    justify-content:center;
+
+    margin-top:8px;
+
+}
+
+/*==========================
+PROFILE DETAILS
+==========================*/
+
+.patient-details{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.patient-detail-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.patient-detail-card h4{
+
+    font-size:16px;
+
+    margin-bottom:8px;
+
+}
+
+.patient-detail-card p{
+
+    font-size:14px;
+
+    color:var(--text-light);
+
+}
+
+/*==========================
+EMERGENCY CONTACT
+==========================*/
+
+.emergency-contact-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px;
+
+    background:#fff7ed;
+
+    border-radius:18px;
+
+    margin-top:20px;
+
+}
+
+.emergency-contact-card h3{
+
+    font-size:18px;
+
+}
+
+.emergency-contact-card strong{
+
+    color:#ea580c;
+
+    font-size:18px;
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.patient-summary-card{
+
+    padding:20px;
+
+}
+
+.patient-avatar{
+
+    width:75px;
+
+    height:75px;
+
+    font-size:32px;
+
+}
+
+.patient-basic h2{
+
+    font-size:22px;
+
+}
+
+.threshold-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.info-row{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:6px;
+
+}
+
+.info-row strong{
+
+    text-align:left;
+
+}
+
+.patient-card{
+
+    padding:16px;
+
+}
+
+.emergency-contact-card{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 5
+Analytics
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+SUMMARY GRID
+==========================*/
+
+.analytics-summary-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+    margin-bottom:20px;
+
+}
+
+.analytics-summary-card{
+
+    padding:18px;
+
+    border-radius:18px;
+
+}
+
+.analytics-summary-card h2{
+
+    font-size:28px;
+
+}
+
+.analytics-summary-card small{
+
+    font-size:13px;
+
+}
+
+.analytics-summary-card span{
+
+    font-size:13px;
+
+}
+
+/*==========================
+CHART GRID
+==========================*/
+
+.analytics-chart-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.analytics-chart-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.analytics-chart-card h3{
+
+    font-size:18px;
+
+    margin-bottom:15px;
+
+}
+
+.analytics-chart-card canvas{
+
+    width:100%!important;
+
+    height:240px!important;
+
+}
+
+/*==========================
+INFO GRID
+==========================*/
+
+.analytics-info-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.analytics-info-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.analytics-info-card h3{
+
+    font-size:18px;
+
+}
+
+/*==========================
+TABLE
+==========================*/
+
+.analytics-table-wrapper{
+
+    overflow-x:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+.analytics-table{
+
+    min-width:550px;
+
+}
+
+.analytics-table td{
+
+    padding:14px;
+
+    font-size:14px;
+
+}
+
+/*==========================
+PROGRESS
+==========================*/
+
+.progress-item{
+
+    margin-bottom:20px;
+
+}
+
+.progress-item span{
+
+    font-size:14px;
+
+}
+
+.progress-item progress{
+
+    height:12px;
+
+}
+
+/*==========================
+BADGES
+==========================*/
+
+.analytics-badge{
+
+    font-size:12px;
+
+    padding:6px 12px;
+
+}
+
+/*==========================
+INSIGHT CARD
+==========================*/
+
+.analytics-insight{
+
+    margin-top:18px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#eff6ff;
+
+    border-left:5px solid #2563eb;
+
+}
+
+.analytics-insight h4{
+
+    font-size:17px;
+
+    margin-bottom:8px;
+
+}
+
+.analytics-insight p{
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    color:var(--text-light);
+
+}
+
+/*==========================
+TREND CARD
+==========================*/
+
+.trend-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#fff;
+
+    box-shadow:var(--shadow);
+
+    margin-top:18px;
+
+}
+
+.trend-card h3{
+
+    font-size:18px;
+
+}
+
+.trend-card strong{
+
+    font-size:26px;
+
+    color:var(--primary);
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.analytics-summary-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.analytics-summary-card{
+
+    padding:16px;
+
+}
+
+.analytics-summary-card h2{
+
+    font-size:24px;
+
+}
+
+.analytics-chart-card{
+
+    padding:16px;
+
+}
+
+.analytics-chart-card canvas{
+
+    height:210px!important;
+
+}
+
+.analytics-info-card{
+
+    padding:16px;
+
+}
+
+.trend-card{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
+
+}
+
+.analytics-table td{
+
+    font-size:13px;
+
+    padding:12px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 6
+AI REVIEW
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+AI TOP GRID
+==========================*/
+
+.ai-top-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/*==========================
+AI RISK CARD
+==========================*/
+
+.ai-risk-card{
+
+    padding:22px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+}
+
+.ai-risk-card h3{
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+}
+
+/*==========================
+RISK CIRCLE
+==========================*/
+
+.risk-circle{
+
+    width:150px;
+
+    height:150px;
+
+    margin:20px auto;
+
+}
+
+.risk-circle div{
+
+    font-size:34px;
+
+}
+
+/*==========================
+STATUS CARD
+==========================*/
+
+.ai-status-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.ai-status-card h3{
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+.status-list{
+
+    gap:12px;
+
+}
+
+.status-list div{
+
+    padding:12px 0;
+
+}
+
+.status-list span{
+
+    font-size:14px;
+
+}
+
+.status-list strong{
+
+    font-size:15px;
+
+}
+
+/*==========================
+AI REPORT
+==========================*/
+
+.ai-main-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.ai-main-card h2{
+
+    font-size:22px;
+
+    margin-bottom:18px;
+
+}
+
+.ai-report-box{
+
+    padding:18px;
+
+    border-radius:16px;
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+/*==========================
+PREDICTIONS
+==========================*/
+
+.prediction-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.prediction-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.prediction-card h3{
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+.prediction-item{
+
+    padding:12px 0;
+
+}
+
+.prediction-item span{
+
+    font-size:14px;
+
+}
+
+.prediction-item strong{
+
+    font-size:15px;
+
+}
+
+/*==========================
+RECOMMENDATIONS
+==========================*/
+
+.prediction-card ul{
+
+    padding-left:18px;
+
+}
+
+.prediction-card li{
+
+    font-size:14px;
+
+    margin-bottom:12px;
+
+    line-height:1.7;
+
+}
+
+/*==========================
+AI SUMMARY
+==========================*/
+
+.summary-card{
+
+    padding:22px;
+
+    border-radius:22px;
+
+}
+
+.summary-card h2{
+
+    font-size:22px;
+
+}
+
+.summary-card p{
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+/*==========================
+AI ACTION BUTTONS
+==========================*/
+
+#aiSection .action-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+}
+
+#aiSection .action-grid button{
+
+    width:100%;
+
+    height:54px;
+
+    border-radius:16px;
+
+}
+
+/*==========================
+HEALTH SCORE
+==========================*/
+
+.health-score-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-top:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.health-score-card h3{
+
+    font-size:18px;
+
+    margin-bottom:10px;
+
+}
+
+.health-score{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#2563eb;
+
+}
+
+.health-score-label{
+
+    margin-top:8px;
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/*==========================
+AI TIMELINE
+==========================*/
+
+.ai-timeline{
+
+    margin-top:20px;
+
+}
+
+.ai-timeline-item{
+
+    position:relative;
+
+    padding-left:28px;
+
+    margin-bottom:18px;
+
+}
+
+.ai-timeline-item::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:6px;
+
+    width:12px;
+
+    height:12px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+}
+
+.ai-timeline-item::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:5px;
+
+    top:20px;
+
+    width:2px;
+
+    height:100%;
+
+    background:#dbeafe;
+
+}
+
+.ai-timeline-item:last-child::after{
+
+    display:none;
+
+}
+
+.ai-timeline-item h4{
+
+    font-size:15px;
+
+    margin-bottom:5px;
+
+}
+
+.ai-timeline-item p{
+
+    font-size:13px;
+
+    color:var(--text-light);
+
+}
+
+/*==========================
+CONFIDENCE BAR
+==========================*/
+
+.confidence-card{
+
+    margin-top:20px;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.confidence-bar{
+
+    width:100%;
+
+    height:12px;
+
+    background:#e5e7eb;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:12px;
+
+}
+
+.confidence-fill{
+
+    height:100%;
+
+    width:92%;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        90deg,
+        #2563eb,
+        #60a5fa
+    );
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.ai-risk-card,
+.ai-status-card,
+.ai-main-card,
+.prediction-card,
+.summary-card,
+.health-score-card,
+.confidence-card{
+
+    padding:16px;
+
+}
+
+.risk-circle{
+
+    width:120px;
+
+    height:120px;
+
+}
+
+.risk-circle div{
+
+    font-size:28px;
+
+}
+
+.health-score{
+
+    font-size:34px;
+
+}
+
+.ai-main-card h2{
+
+    font-size:20px;
+
+}
+
+.summary-card h2{
+
+    font-size:20px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 7
+DEVICE + EMERGENCY
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+DEVICE PAGE GRID
+==========================*/
+
+.device-page-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/*==========================
+DEVICE CARDS
+==========================*/
+
+.device-info-card,
+.device-status-card,
+.device-control-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+}
+
+.device-info-card h2,
+.device-status-card h2,
+.device-control-card h2{
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+/*==========================
+DEVICE INFO LIST
+==========================*/
+
+.device-info-list{
+
+    gap:12px;
+
+}
+
+.device-info-list div{
+
+    padding:12px 0;
+
+}
+
+.device-info-list span{
+
+    font-size:14px;
+
+}
+
+.device-info-list strong{
+
+    font-size:15px;
+
+    color:var(--primary);
+
+}
+
+/*==========================
+STATUS GRID
+==========================*/
+
+.status-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.status-box{
+
+    padding:18px;
+
+    border-radius:18px;
+
+}
+
+.status-box h2{
+
+    font-size:26px;
+
+}
+
+.status-box span{
+
+    font-size:13px;
+
+}
+
+/*==========================
+DEVICE CONTROLS
+==========================*/
+
+.device-control-card .action-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+}
+
+.device-control-card button{
+
+    width:100%;
+
+    height:54px;
+
+    border-radius:16px;
+
+}
+
+/*==========================
+DEVICE HEALTH
+==========================*/
+
+.device-health-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-top:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.device-health-card h3{
+
+    font-size:18px;
+
+    margin-bottom:15px;
+
+}
+
+.device-health-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.device-health-row:last-child{
+
+    border-bottom:none;
+
+}
+
+/*==========================
+EMERGENCY ALERT
+==========================*/
+
+.emergency-alert-card{
+
+    padding:22px;
+
+    border-radius:22px;
+
+}
+
+.emergency-alert-card h2{
+
+    font-size:24px;
+
+}
+
+.emergency-alert-card p{
+
+    font-size:14px;
+
+    line-height:1.8;
+
+}
+
+/*==========================
+EMERGENCY GRID
+==========================*/
+
+.emergency-grid{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.emergency-card{
+
+    padding:22px;
+
+    border-radius:20px;
+
+}
+
+.emergency-card h1{
+
+    font-size:40px;
+
+}
+
+.emergency-card h2{
+
+    font-size:24px;
+
+}
+
+.emergency-card h3{
+
+    font-size:18px;
+
+}
+
+.emergency-card button{
+
+    width:100%;
+
+    height:52px;
+
+}
+
+/*==========================
+SOS BUTTON
+==========================*/
+
+.sos-button{
+
+    width:100%;
+
+    height:70px;
+
+    border:none;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        135deg,
+        #dc2626,
+        #ef4444
+    );
+
+    color:#fff;
+
+    font-size:24px;
+
+    font-weight:800;
+
+    box-shadow:0 10px 25px rgba(220,38,38,.35);
+
+}
+
+.sos-button:active{
+
+    transform:scale(.96);
+
+}
+
+/*==========================
+EMERGENCY CONTACT
+==========================*/
+
+.contact-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-top:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.contact-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.contact-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.contact-call{
+
+    background:#16a34a;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:12px;
+
+    padding:8px 16px;
+
+    cursor:pointer;
+
+}
+
+/*==========================
+LOCATION CARD
+==========================*/
+
+.location-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-top:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.location-map{
+
+    width:100%;
+
+    height:180px;
+
+    border-radius:16px;
+
+    background:#e2e8f0;
+
+    margin-top:15px;
+
+}
+
+/*==========================
+EMERGENCY MODAL
+==========================*/
+
+.emergency-box{
+
+    width:95%;
+
+    max-width:420px;
+
+    padding:24px;
+
+    border-radius:22px;
+
+}
+
+.emergency-box h1{
+
+    font-size:24px;
+
+}
+
+.emergency-box p{
+
+    font-size:14px;
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.status-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.device-info-card,
+.device-status-card,
+.device-control-card,
+.emergency-alert-card,
+.emergency-card,
+.contact-card,
+.location-card{
+
+    padding:16px;
+
+}
+
+.sos-button{
+
+    height:60px;
+
+    font-size:20px;
+
+}
+
+.emergency-card h1{
+
+    font-size:34px;
+
+}
+
+.emergency-card h2{
+
+    font-size:20px;
+
+}
+
+.location-map{
+
+    height:150px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 8
+SETTINGS
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+SETTINGS CARD
+==========================*/
+
+.settings-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:18px;
+
+}
+
+.settings-card h2{
+
+    font-size:20px;
+
+    margin-bottom:18px;
+
+}
+
+/*==========================
+SETTINGS LIST
+==========================*/
+
+.settings-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+/*==========================
+SETTING ROW
+==========================*/
+
+.setting-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:16px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.setting-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.setting-info{
+
+    flex:1;
+
+}
+
+.setting-info h4{
+
+    font-size:16px;
+
+    margin-bottom:6px;
+
+}
+
+.setting-info p{
+
+    font-size:13px;
+
+    color:var(--text-light);
+
+    line-height:1.5;
+
+}
+
+/*==========================
+SWITCH
+==========================*/
+
+.switch{
+
+    flex-shrink:0;
+
+}
+
+/*==========================
+PROFILE CARD
+==========================*/
+
+.profile-settings{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:#fff;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:20px;
+
+}
+
+.profile-settings img{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+}
+
+.profile-settings-avatar{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:28px;
+
+    font-weight:700;
+
+}
+
+.profile-settings h3{
+
+    font-size:20px;
+
+}
+
+.profile-settings span{
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+}
+
+/*==========================
+ACCOUNT BUTTONS
+==========================*/
+
+.account-actions{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.account-actions button{
+
+    width:100%;
+
+    height:52px;
+
+}
+
+/*==========================
+APP INFO
+==========================*/
+
+.app-info{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+    margin-top:18px;
+
+}
+
+.app-info h3{
+
+    margin-bottom:15px;
+
+}
+
+.app-info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:12px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.app-info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+/*==========================
+SYNC CARD
+==========================*/
+
+.sync-settings{
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:#fff;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    margin-top:20px;
+
+}
+
+.sync-settings h3{
+
+    margin-bottom:10px;
+
+}
+
+.sync-settings p{
+
+    opacity:.9;
+
+    line-height:1.6;
+
+}
+
+.sync-settings button{
+
+    margin-top:18px;
+
+    width:100%;
+
+    background:#fff;
+
+    color:#2563eb;
+
+}
+
+/*==========================
+DANGER ZONE
+==========================*/
+
+.danger-zone{
+
+    background:#fff5f5;
+
+    border:2px solid #fecaca;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-top:22px;
+
+}
+
+.danger-zone h3{
+
+    color:#dc2626;
+
+    margin-bottom:10px;
+
+}
+
+.danger-zone p{
+
+    color:#7f1d1d;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+.danger-zone button{
+
+    width:100%;
+
+    margin-top:15px;
+
+}
+
+/*==========================
+ABOUT CARD
+==========================*/
+
+.about-card{
+
+    text-align:center;
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    margin-top:20px;
+
+}
+
+.about-card h2{
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+
+}
+
+.about-card p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+}
+
+.about-card small{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#94a3b8;
+
+}
+
+/*==========================
+FOOTER
+==========================*/
+
+.dashboard-footer{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    gap:12px;
+
+    padding:25px 10px;
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.settings-card{
+
+    padding:16px;
+
+}
+
+.profile-settings{
+
+    flex-direction:column;
+
+    text-align:center;
+
+}
+
+.profile-settings-avatar{
+
+    width:60px;
+
+    height:60px;
+
+    font-size:24px;
+
+}
+
+.setting-row{
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+}
+
+.setting-row .switch{
+
+    align-self:flex-end;
+
+}
+
+.about-card{
+
+    padding:20px;
+
+}
+
+.sync-settings{
+
+    padding:18px;
+
+}
+
+.danger-zone{
+
+    padding:18px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 9
+BOTTOM NAVIGATION + APP EXPERIENCE
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+BOTTOM NAVIGATION
+==========================*/
+
+.mobile-bottom-nav{
+
+    position:fixed;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:72px;
+
+    background:#ffffff;
+
+    border-top:1px solid #e5e7eb;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    z-index:1500;
+
+    box-shadow:0 -5px 20px rgba(0,0,0,.08);
+
+    padding-bottom:env(safe-area-inset-bottom);
+
+}
+
+.mobile-bottom-nav a{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    color:#64748b;
+
+    font-size:11px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.mobile-bottom-nav a i{
+
+    font-size:22px;
+
+    margin-bottom:4px;
+
+}
+
+.mobile-bottom-nav a.active{
+
+    color:#2563eb;
+
+}
+
+.mobile-bottom-nav a:active{
+
+    transform:scale(.92);
+
+}
+
+/*==========================
+CONTENT PADDING
+==========================*/
+
+.dashboard-content{
+
+    padding-bottom:95px;
+
+}
+
+/*==========================
+SAFE AREA
+==========================*/
+
+.mobile-header{
+
+    padding-top:env(safe-area-inset-top);
+
+}
+
+.mobile-bottom-nav{
+
+    padding-bottom:env(safe-area-inset-bottom);
+
+}
+
+/*==========================
+PAGE ANIMATION
+==========================*/
+
+.dashboard-section{
+
+    animation:mobileFade .3s ease;
+
+}
+
+@keyframes mobileFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*==========================
+CARD TOUCH
+==========================*/
+
+.metric-card,
+.patient-card,
+.analytics-summary-card,
+.analytics-chart-card,
+.device-card,
+.ai-main-card,
+.settings-card{
+
+    transition:.25s;
+
+}
+
+.metric-card:active,
+.patient-card:active,
+.analytics-summary-card:active,
+.analytics-chart-card:active,
+.device-card:active,
+.ai-main-card:active,
+.settings-card:active{
+
+    transform:scale(.98);
+
+}
+
+/*==========================
+BUTTON TOUCH
+==========================*/
+
+button{
+
+    -webkit-tap-highlight-color:transparent;
+
+}
+
+button:active{
+
+    transform:scale(.96);
+
+}
+
+/*==========================
+SCROLL
+==========================*/
+
+.dashboard-content{
+
+    scroll-behavior:smooth;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+/*==========================
+FLOATING ACTION BUTTON
+==========================*/
+
+.mobile-fab{
+
+    position:fixed;
+
+    right:18px;
+
+    bottom:95px;
+
+    width:58px;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:#fff;
+
+    font-size:26px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+
+    z-index:1490;
+
+}
+
+.mobile-fab:active{
+
+    transform:scale(.94);
+
+}
+
+/*==========================
+PULL TO REFRESH SPACE
+==========================*/
+
+.dashboard-content::before{
+
+    content:"";
+
+    display:block;
+
+    height:6px;
+
+}
+
+/*==========================
+LANDSCAPE
+==========================*/
+
+@media (orientation:landscape){
+
+.mobile-bottom-nav{
+
+    height:60px;
+
+}
+
+.dashboard-content{
+
+    padding-bottom:80px;
+
+}
+
+}
+
+}
+
+/*==================================================
+SMALL PHONES
+==================================================*/
+
+@media (max-width:480px){
+
+.mobile-bottom-nav{
+
+    height:68px;
+
+}
+
+.mobile-bottom-nav a{
+
+    font-size:10px;
+
+}
+
+.mobile-bottom-nav a i{
+
+    font-size:20px;
+
+}
+
+.mobile-fab{
+
+    width:52px;
+
+    height:52px;
+
+    font-size:22px;
+
+    right:15px;
+
+    bottom:88px;
+
+}
+
+}
+/*=========================================================
+HEALTH SENTINEL MOBILE
+PART 10
+FINAL PRODUCTION POLISH
+=========================================================*/
+
+@media (max-width:992px){
+
+/*==========================
+APP CONTAINER
+==========================*/
+
+#dashboardPage{
+
+    max-width:100%;
+
+    overflow-x:hidden;
+
+}
+
+/*==========================
+TYPOGRAPHY
+==========================*/
+
+body{
+
+    font-size:15px;
+
+    line-height:1.5;
+
+    -webkit-font-smoothing:antialiased;
+
+    -moz-osx-font-smoothing:grayscale;
+
+}
+
+/*==========================
+IMAGES
+==========================*/
+
+img{
+
+    max-width:100%;
+
+    height:auto;
+
+    display:block;
+
+    object-fit:cover;
+
+}
+
+/*==========================
+CARDS
+==========================*/
+
+.metric-card,
+.patient-card,
+.analytics-summary-card,
+.analytics-chart-card,
+.device-card,
+.ai-main-card,
+.settings-card,
+.emergency-card{
+
+    overflow:hidden;
+
+    word-wrap:break-word;
+
+}
+
+/*==========================
+CHARTS
+==========================*/
+
+canvas{
+
+    width:100%!important;
+
+    max-width:100%!important;
+
+}
+
+/*==========================
+TABLES
+==========================*/
+
+table{
+
+    width:100%;
+
+    display:block;
+
+    overflow-x:auto;
+
+    white-space:nowrap;
+
+}
+
+/*==========================
+FORMS
+==========================*/
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    min-height:48px;
+
+    border-radius:14px;
+
+    font-size:16px;
+
+}
+
+textarea{
+
+    min-height:110px;
+
+}
+
+/*==========================
+BUTTONS
+==========================*/
+
+button{
+
+    min-height:50px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+}
+
+button:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+/*==========================
+TOAST
+==========================*/
+
+#toastContainer{
+
+    left:12px;
+
+    right:12px;
+
+    top:80px;
+
+}
+
+.toast{
+
+    width:100%;
+
+    border-radius:16px;
+
+}
+
+/*==========================
+OFFLINE BANNER
+==========================*/
+
+.offline-banner{
+
+    position:fixed;
+
+    top:65px;
+
+    left:12px;
+
+    right:12px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    padding:12px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    z-index:2000;
+
+    display:none;
+
+}
+
+/*==========================
+LOADING
+==========================*/
+
+.loading-overlay{
+
+    backdrop-filter:blur(8px);
+
+}
+
+.loader{
+
+    width:55px;
+
+    height:55px;
+
+}
+
+/*==========================
+NOTIFICATION BADGE
+==========================*/
+
+.notification-badge{
+
+    min-width:18px;
+
+    min-height:18px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:10px;
+
+}
+
+/*==========================
+FOOTER
+==========================*/
+
+.dashboard-footer{
+
+    padding-bottom:90px;
+
+}
+
+/*==========================
+LANDSCAPE
+==========================*/
+
+@media (orientation:landscape){
+
+.dashboard-content{
+
+    padding-left:20px;
+
+    padding-right:20px;
+
+}
+
+.mobile-header{
+
+    height:58px;
+
+}
+
+.mobile-bottom-nav{
+
+    height:58px;
+
+}
+
+}
+
+/*==========================
+LARGE TABLETS
+==========================*/
+
+@media (min-width:768px){
+
+.dashboard-content{
+
+    max-width:760px;
+
+    margin:auto;
+
+}
+
+}
+
+/*==========================
+IOS SAFE AREA
+==========================*/
+
+.mobile-header{
+
+    padding-top:max(0px,env(safe-area-inset-top));
+
+}
+
+.mobile-bottom-nav{
+
+    padding-bottom:max(0px,env(safe-area-inset-bottom));
+
+}
+
+/*==========================
+SMOOTH TRANSITIONS
+==========================*/
+
+*{
+
+    transition:
+
+        background-color .2s,
+
+        color .2s,
+
+        border-color .2s;
+
+}
+
+/*==========================
+ACCESSIBILITY
+==========================*/
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus{
+
+    outline:3px solid rgba(37,99,235,.25);
+
+    outline-offset:2px;
+
+}
+
+/*==========================
+END
+==========================*/
+
+}
