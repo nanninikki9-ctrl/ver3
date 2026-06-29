@@ -831,8 +831,223 @@ PART 1
                     </div>
 
                 </div>
+                <!-- ======================================
+MANUAL HEALTH ENTRY
+====================================== -->
 
+<div class="manual-entry-card card">
+
+    <div class="card-title">
+
+        <div>
+
+            <h2>➕ Manual Health Entry</h2>
+
+            <p>Enter a new health reading manually</p>
+
+        </div>
+
+    </div>
+
+    <div class="manual-grid">
+
+        <div class="input-group">
+
+            <label>Systolic BP (mmHg)</label>
+
+            <input
+                type="number"
+                id="manualSystolic"
+                placeholder="120">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Diastolic BP (mmHg)</label>
+
+            <input
+                type="number"
+                id="manualDiastolic"
+                placeholder="80">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Blood Sugar (mg/dL)</label>
+
+            <input
+                type="number"
+                id="manualSugar"
+                placeholder="110">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>SpO₂ (%)</label>
+
+            <input
+                type="number"
+                id="manualSpo2"
+                placeholder="98">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Heart Rate (BPM)</label>
+
+            <input
+                type="number"
+                id="manualHeartRate"
+                placeholder="72">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Temperature (°C)</label>
+
+            <input
+                type="number"
+                step="0.1"
+                id="manualTemp"
+                placeholder="36.8">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Weight (kg)</label>
+
+            <input
+                type="number"
+                step="0.1"
+                id="manualWeight"
+                placeholder="70">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>Date & Time</label>
+
+            <input
+                type="datetime-local"
+                id="manualDateTime">
+
+        </div>
+
+        <div class="input-group full-width">
+
+            <label>Notes</label>
+
+            <textarea
+                id="manualNotes"
+                rows="4"
+                placeholder="Optional notes"></textarea>
+
+        </div>
+
+    </div>
+
+    <div class="manual-actions">
+
+        <button
+            class="outline-btn"
+            onclick="clearManualEntry()">
+
+            Clear
+
+        </button>
+
+        <button
+            class="primary-btn"
+            onclick="saveManualReading()">
+
+            💾 Save Reading
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ======================================
+RECENT HEALTH HISTORY
+====================================== -->
+
+<div class="history-card card">
+
+    <div class="card-title">
+
+        <div>
+
+            <h2>📋 Recent Health Readings</h2>
+
+            <p>Latest 5 health readings</p>
+
+        </div>
+
+        <button
+            class="outline-btn"
+            onclick="viewAllHistory()">
+
+            View All
+
+        </button>
+
+    </div>
+
+    <div class="history-table-wrapper">
+
+        <table class="history-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>BP</th>
+                    <th>Sugar</th>
+                    <th>SpO₂</th>
+                    <th>HR</th>
+                    <th>Risk</th>
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="recentReadingsTable">
+
+                <tr>
+
+                    <td colspan="8" class="empty-history">
+
+                        No readings available.
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+<div class="card-title">
+
+    <div>
+
+      
             </section>
+            
 
             <!-- =====================================================
             NEXT SECTION STARTS IN PART 2
@@ -1030,7 +1245,7 @@ LIVE MONITORING
 
             <div
                 class="reading-value"
-                id="bpValue">
+               id="liveBPValue"
 
                 --/--
 
@@ -1048,7 +1263,7 @@ LIVE MONITORING
 
             <div
                 class="reading-value"
-                id="sugarValue">
+              id="liveSugarValue"
 
                 --
 
@@ -1066,7 +1281,7 @@ LIVE MONITORING
 
             <div
                 class="reading-value"
-                id="spo2Value">
+               id="liveSpo2Value"
 
                 --%
 
@@ -1075,6 +1290,7 @@ LIVE MONITORING
         </div>
 
     </div>
+    
 
 </section>
 
