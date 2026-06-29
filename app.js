@@ -2079,3 +2079,14 @@ setTimeout(() => {
     }
 
 };
+window.toggleSidebar = function () {
+
+    const sidebar = document.querySelector(".sidebar");
+
+    const overlay = document.getElementById("mobileOverlay");
+
+    sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+};
