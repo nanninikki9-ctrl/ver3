@@ -803,13 +803,19 @@ DASHBOARD PAGE
 
 #dashboardPage{
 
-    background:#f5f7fb;
+    display:none;
+
+    width:100%;
 
     min-height:100vh;
 
-    overflow-y:auto;
-}
+    background:#f5f7fb;
 
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+}
 /* =========================
 APP WRAPPER
 ========================= */
@@ -1965,8 +1971,19 @@ FINAL FIXES
     overflow-y:auto;
 }
 #dashboardPage{
+
+    display:none;
+
+    width:100%;
+
     min-height:100vh;
+
     background:#f5f7fb;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
 }
 
 #loginScreen{
@@ -2038,12 +2055,6 @@ FINAL FIXES
 
 /* DASHBOARD SCROLL FIX */
 
-#dashboardPage{
-    display:block;
-    min-height:100vh;
-    overflow-y:auto !important;
-    overflow-x:hidden;
-}
 
 .app{
     min-height:auto;
@@ -2141,16 +2152,21 @@ FINAL FIXES
     margin-bottom:40px;
 }
 /* ===== DASHBOARD ===== */
-
 #dashboardPage{
-    display:none;
-    width:100%;
-    height:100vh;
-    overflow-y:auto !important;
-    overflow-x:hidden;
-    background:#f5f7fb;
-}
 
+    display:none;
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:#f5f7fb;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+}
 .app{
     max-width:1450px;
     margin:0 auto;
@@ -2463,16 +2479,19 @@ BODY
 
 #dashboardPage{
 
-    background:var(--background);
+    display:none;
+
+    width:100%;
 
     min-height:100vh;
 
+    background:#f5f7fb;
+
     overflow-y:auto;
 
-    color:var(--text);
+    overflow-x:hidden;
 
 }
-
 /* ===================================
 TOPBAR
 =================================== */
@@ -4277,16 +4296,19 @@ body{
 /*==========================
 DASHBOARD
 ==========================*/
-
 #dashboardPage{
+
+    display:none;
 
     width:100%;
 
     min-height:100vh;
 
-    background:
+    background:#f5f7fb;
 
-    var(--background);
+    overflow-y:auto;
+
+    overflow-x:hidden;
 
 }
 
@@ -12017,7 +12039,15 @@ APP CONTAINER
 
 #dashboardPage{
 
-    max-width:100%;
+    display:none;
+
+    width:100%;
+
+    min-height:100vh;
+
+    background:#f5f7fb;
+
+    overflow-y:auto;
 
     overflow-x:hidden;
 
