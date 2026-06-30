@@ -1017,7 +1017,84 @@ window.editReading = async function(readingId){
 /* =========================================
 UTILITY
 ========================================= */
+window.connectDevice = async function () {
 
+    if (!navigator.bluetooth) {
+
+        alert("Bluetooth is not supported on this browser.");
+
+        return;
+
+    }
+
+    try {
+
+        const device = await navigator.bluetooth.requestDevice({
+
+            acceptAllDevices: true,
+
+            optionalServices: [
+                "battery_service"
+            ]
+
+        });
+
+        const server = await device.gatt.connect();
+
+        // Save globally
+        window.connectedDevice = device;
+
+        // Device Name
+        updateAll(
+            "deviceName",
+            device.name || "Unknown Device"
+        );
+
+        // Status
+        updateAll(
+            "signal",
+            "Connected"
+        );
+
+        // Last Sync
+        updateAll(
+            "sync",
+            new Date().toLocaleTimeString()
+        );
+
+        // Battery
+        updateAll(
+            "battery",
+            "Connected"
+        );
+
+        // Button
+        const btn = document.getElementById("connectBtn");
+
+        if(btn){
+
+            btn.innerHTML="Connected";
+
+            btn.disabled=true;
+
+        }
+
+        alert(
+            "Connected to " +
+            (device.name || "Bluetooth Device")
+        );
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+}
 window.disconnectDevice =
 () => {
 
@@ -2566,22 +2643,6 @@ PART 1
 SIDEBAR TOGGLE
 ----------------------------- */
 
-document.addEventListener("DOMContentLoaded", () => {
-
-    const menuBtn = document.querySelector(".menu-btn");
-    const sidebar = document.querySelector(".sidebar");
-
-    if (menuBtn && sidebar) {
-
-        menuBtn.addEventListener("click", () => {
-
-            sidebar.classList.toggle("collapsed");
-
-        });
-
-    }
-
-});
 
 /* -----------------------------
 SEARCH BAR
@@ -2966,7 +3027,7 @@ async function loadFullHistory(){
             spo2Total += Number(r.spo2 || 0);
 
             systolicTotal += Number(r.systolic || 0);
-            console.log(docSnap.data());
+            console.log(docItem.data());
             console.log("Readings Array:", readings);
 
             const date = r.timestamp ?
@@ -3157,3 +3218,60 @@ window.filterFullHistory=function(){
         });
 
 }
+console.log("APP JS LOADED");
+
+
+    alert("CONNECT FUNCTION CALLED");
+window.connectDevice = function () {
+};
+document.addEventListener("DOMContentLoaded", () => {
+
+    const btn = document.getElementById("connectBtn");
+
+    console.log("Button:", btn);
+
+    if (!btn) {
+
+        alert("Connect button not found");
+
+        return;
+
+    }
+
+    btn.onclick = async function () {
+
+        alert("Button Clicked");
+
+        console.log("Clicked");
+
+        if (!navigator.bluetooth) {
+
+            alert("Bluetooth not supported");
+
+            return;
+
+        }
+
+        try {
+
+            const device = await navigator.bluetooth.requestDevice({
+
+                acceptAllDevices: true
+
+            });
+
+            alert(device.name || "Unnamed Device");
+
+        }
+
+        catch (e) {
+
+            alert(e.message);
+
+            console.error(e);
+
+        }
+
+    };
+
+});
