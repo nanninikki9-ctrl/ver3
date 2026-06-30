@@ -1017,6 +1017,21 @@ window.editReading = async function(readingId){
 /* =========================================
 UTILITY
 ========================================= */
+// =====================================
+// BLUETOOTH CONFIG
+// =====================================
+
+const HEALTH_SERVICE = "12345678-1234-1234-1234-1234567890ab";
+const HEALTH_CHARACTERISTIC = "abcdefab-1234-5678-1234-abcdefabcdef";
+
+let bluetoothDevice = null;
+let bluetoothServer = null;
+let bluetoothCharacteristic = null;
+
+// =====================================
+// CONNECT DEVICE
+// =====================================
+
 window.connectDevice = async function () {
 
     if (!navigator.bluetooth) {
@@ -1029,59 +1044,60 @@ window.connectDevice = async function () {
 
     try {
 
-        const device = await navigator.bluetooth.requestDevice({
+        bluetoothDevice = await navigator.bluetooth.requestDevice({
 
             acceptAllDevices: true,
 
             optionalServices: [
-                "battery_service"
+                HEALTH_SERVICE
             ]
 
         });
 
-        const server = await device.gatt.connect();
+        bluetoothServer =
+            await bluetoothDevice.gatt.connect();
 
-        // Save globally
-        window.connectedDevice = device;
+        const service =
+            await bluetoothServer.getPrimaryService(
+                HEALTH_SERVICE
+            );
 
-        // Device Name
-        updateAll(
-            "deviceName",
-            device.name || "Unknown Device"
+        bluetoothCharacteristic =
+            await service.getCharacteristic(
+                HEALTH_CHARACTERISTIC
+            );
+
+        await bluetoothCharacteristic.startNotifications();
+
+        bluetoothCharacteristic.addEventListener(
+            "characteristicvaluechanged",
+            handleHealthData
         );
 
-        // Status
-        updateAll(
-            "signal",
-            "Connected"
-        );
+        updateAll("deviceName",
+            bluetoothDevice.name || "Unknown Device");
 
-        // Last Sync
-        updateAll(
-            "sync",
-            new Date().toLocaleTimeString()
-        );
+        updateAll("signal", "Connected");
 
-        // Battery
-        updateAll(
-            "battery",
-            "Connected"
-        );
+        updateAll("battery", "--");
 
-        // Button
-        const btn = document.getElementById("connectBtn");
+        updateAll("sync",
+            new Date().toLocaleTimeString());
+
+        const btn =
+            document.getElementById("connectBtn");
 
         if(btn){
 
-            btn.innerHTML="Connected";
+            btn.innerHTML = "Connected";
 
-            btn.disabled=true;
+            btn.disabled = true;
 
         }
 
         alert(
             "Connected to " +
-            (device.name || "Bluetooth Device")
+            (bluetoothDevice.name || "Bluetooth Device")
         );
 
     }
@@ -1095,35 +1111,129 @@ window.connectDevice = async function () {
     }
 
 }
-window.disconnectDevice =
-() => {
+function handleHealthData(event){
 
-    const battery =
-        el("battery");
+    const decoder =
+        new TextDecoder();
 
-    const signal =
-        el("signal");
+    const json =
+        decoder.decode(event.target.value);
 
-    const sync =
-        el("sync");
+    try{
 
-    if (battery)
-        battery.textContent =
-            "--";
+        const data =
+            JSON.parse(json);
 
-    if (signal)
-        signal.textContent =
-            "Disconnected";
+        document.getElementById("bpValue").innerHTML =
+            data.systolic + "/" + data.diastolic;
 
-    if (sync)
-        sync.textContent =
-            "--";
+        document.getElementById("sugarValue").innerHTML =
+            data.glucose;
 
-    alert(
-        "Device Disconnected"
+        document.getElementById("spo2Value").innerHTML =
+            data.spo2 + "%";
+
+        if(document.getElementById("heartRateValue")){
+
+            document.getElementById("heartRateValue").innerHTML =
+                data.heartRate;
+
+        }
+
+        analyzeHealth();
+
+        initializeCharts();
+
+        updateAnalytics();
+
+        saveBluetoothReading(data);
+
+    }
+
+    catch(err){
+
+        console.error("Invalid Bluetooth Data");
+
+    }
+
+}
+async function saveBluetoothReading(data){
+
+    const user =
+        auth.currentUser;
+
+    if(!user) return;
+
+    await addDoc(
+
+        collection(
+            db,
+            "users",
+            user.uid,
+            "readings"
+        ),
+
+        {
+
+            bp:
+                data.systolic +
+                "/" +
+                data.diastolic,
+
+            systolic:data.systolic,
+
+            diastolic:data.diastolic,
+
+            sugar:data.glucose,
+
+            spo2:data.spo2,
+
+            heartRate:data.heartRate,
+
+            temperature:data.temperature,
+
+            risk:"Auto",
+
+            timestamp:
+                serverTimestamp()
+
+        }
+
     );
 
-};
+}
+window.disconnectDevice = function(){
+
+    if(bluetoothDevice &&
+       bluetoothDevice.gatt.connected){
+
+        bluetoothDevice.gatt.disconnect();
+
+    }
+
+    updateAll("deviceName","--");
+
+    updateAll("signal","Disconnected");
+
+    updateAll("battery","--");
+
+    updateAll("sync","--");
+
+    const btn =
+        document.getElementById("connectBtn");
+
+    if(btn){
+
+        btn.innerHTML =
+            "Connect Device";
+
+        btn.disabled = false;
+
+    }
+
+    alert("Device Disconnected");
+
+}
 /* =========================================
 SAVE PROFILE
 ========================================= */
